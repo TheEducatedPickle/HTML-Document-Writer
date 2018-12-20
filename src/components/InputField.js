@@ -11,7 +11,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 500,
   },
   dense: {
     marginTop: 19,
@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-class TextFields extends React.Component {
+class InputField extends React.Component {
   state = {
     multiline: 'Controlled',
   };
@@ -54,4 +54,4 @@ TextFields.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextFields);
+export default withStyles(styles)(InputField);
