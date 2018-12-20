@@ -22,9 +22,12 @@ const styles = theme => ({
 });
 
 class InputField extends React.Component {
-  state = {
-    multiline: 'Controlled',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      multiline: 'Controlled',
+    };
+  }
 
   handleChange = name => event => {
     this.setState({
@@ -39,8 +42,8 @@ class InputField extends React.Component {
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-textarea"
-          label="With placeholder multiline"
-          placeholder="Placeholder"
+          label="Type your item here!"
+          placeholder="Input"
           multiline
           className={classes.textField}
           margin="normal"
@@ -50,7 +53,7 @@ class InputField extends React.Component {
   }
 }
 
-TextFields.propTypes = {
+TextField.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 

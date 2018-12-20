@@ -1,9 +1,15 @@
 import React from 'react'
-import Input from './InputField'
+import InputList from './InputList'
+import Output from './Output'
+import AppBar from './MenuBar'
 
 function App() {
     return (
-        <Input />
+        <div>
+            <AppBar />
+            <InputList />
+            <Output />
+        </div>
     );
 }
 

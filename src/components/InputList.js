@@ -1,25 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import SendIcon from '@material-ui/icons/Send';
+import InputElement from './InputElement'
+import FloatingAddButton from './FloatingAddButton'
 
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    maxWidth: 500,
+    backgroundColor: 'transparent',
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
 });
 
-class NestedList extends React.Component {
+class InputList extends React.Component {
   state = {
     open: true,
   };
@@ -34,22 +32,20 @@ class NestedList extends React.Component {
     return (
       <List
         component="nav"
-        subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
         className={classes.root}
       >
-        <ListItem button>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText inset primary="Sent mail" />
+        <ListItem disableGutters>
+          <InputElement />
         </ListItem>
+        <FloatingAddButton />
       </List>
+      
     );
   }
 }
 
-NestedList.propTypes = {
+InputList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NestedList);
+export default withStyles(styles)(InputList);
