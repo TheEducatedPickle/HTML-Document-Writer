@@ -1,7 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
 import InputDeleteButton from './InputDeleteButton';
-import { Grid } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
 
 class InputElement extends React.Component {
     constructor(props) {
@@ -12,10 +12,10 @@ class InputElement extends React.Component {
     }
     render() {
         return (
-            <Grid>
+            <ListItem disableGutters>
                 <InputField />
                 <InputDeleteButton />
-            </Grid>
+            </ListItem>
         );
     }
 }
