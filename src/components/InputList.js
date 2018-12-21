@@ -20,6 +20,7 @@ class InputList extends React.Component {
             ElementArray: [""],
         };
         this.handleAddElement = this.handleAddElement.bind(this);
+        this.handleRemoveElement = this.handleRemoveElement.bind(this);
     }
 
     /*
@@ -31,8 +32,12 @@ class InputList extends React.Component {
     handleAddElement() {
         console.log(this.state.ElementArray);
         this.setState(state => ({
-            ElementArray: state.ElementArray.concat(""),
+            ElementArray: state.ElementArray.concat(''),
         }))
+    }
+
+    handleRemoveElement(index) {
+        console.log('Removing element at index ' + index);
     }
 
     render() {
@@ -41,7 +46,7 @@ class InputList extends React.Component {
         return (
             <List component="list" className={classes.root}>
                 {this.state.ElementArray.map((text, index) => (
-                    <InputElement key={index} index={index} />
+                    <InputElement key={index} index={index} onDelete={this.handleRemoveElement}/>
                 ))}
                 <FloatingAddButton onClick={this.handleAddElement} />
             </List>

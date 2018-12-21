@@ -14,7 +14,7 @@ function ButtonSizes(props) {
     const { classes } = props;
     return (
         <div>
-            <IconButton aria-label="Delete" className={classes.icon}>
+            <IconButton aria-label="Delete" className={classes.icon} onClick={() => console.log(this.props)}>
                 <DeleteIcon fontSize="default" />
             </IconButton>
         </div>

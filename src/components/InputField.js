@@ -47,7 +47,6 @@ class InputField extends React.Component {
           multiline
           className={classes.textField}
           margin="normal"
-          onChange={this.props.onChange}
         />
       </form>
     );

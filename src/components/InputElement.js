@@ -20,11 +20,16 @@ class InputElement extends React.Component {
         console.log(this.state.text);
     }
 
+    handleDelete() {
+        console.log(this.state.index);
+        this.props.onDelete(this.state.index);
+    }
+
     render() {
         return (
             <ListItem disableGutters>
                 <InputField onChange={this.handleTextChange}/>
-                <InputDeleteButton />
+                <InputDeleteButton onClick={() => console.log(this.state.index)}/>
             </ListItem>
         );
     }
