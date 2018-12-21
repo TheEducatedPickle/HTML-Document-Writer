@@ -5,8 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
-    margin: {
-        margin: theme.spacing.unit,
+    icon: {
+        
     },
 });
 
@@ -14,8 +14,8 @@ function ButtonSizes(props) {
     const { classes } = props;
     return (
         <div>
-            <IconButton aria-label="Delete" className={classes.margin}>
-                <DeleteIcon fontSize="small" />
+            <IconButton aria-label="Delete" className={classes.icon}>
+                <DeleteIcon fontSize="medium" />
             </IconButton>
         </div>
     );

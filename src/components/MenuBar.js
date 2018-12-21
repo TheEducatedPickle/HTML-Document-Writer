@@ -12,9 +12,9 @@ const styles = {
     flexGrow: 1,
   },
   menubar: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 15,
+    paddingTop: 13,
+    paddingBottom: 13,
+    paddingLeft: 20,
   }
 };
 

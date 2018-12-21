@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-
-import InputElement from './InputElement'
-import FloatingAddButton from './FloatingAddButton'
-
+import InputField from './InputField';
+import InputDeleteButton from './InputDeleteButton';
+import ListItem from '@material-ui/core/ListItem';
+import FloatingAddButton from './FloatingAddButton';
 const styles = theme => ({
     root: {
         width: '100%',
@@ -20,7 +20,7 @@ const styles = theme => ({
 class InputList extends React.Component {
     state = {
         open: true,
-        ElementArray: [],
+        ElementArray: [""],
     };
 
     /*
@@ -29,23 +29,25 @@ class InputList extends React.Component {
     };
     */
 
-    addElement = () => {
-
+    handleAddElement = () => {
+        this.setState(state => ({
+            ElementArray: [state.ElementArray, ""],
+        }))
     }
 
     render() {
         const { classes } = this.props;
 
         return (
-            <List
-                component="nav"
-                className={classes.root}
-            >
-                <InputElement />
-
-                <FloatingAddButton />
+            <List component="list" className={classes.root}>
+                {this.state.ElementArray.map((text, index) => (
+                    <ListItem disableGutters>
+                        <InputField />
+                        <InputDeleteButton />
+                    </ListItem>
+                ))}
+                <FloatingAddButton onClick={this.handleAddElement} />
             </List>
-
         );
     }
 }

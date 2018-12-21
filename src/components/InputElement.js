@@ -1,3 +1,4 @@
+//NOTE: NOT CURRENTLY USED
 import React from 'react';
 import InputField from './InputField';
 import InputDeleteButton from './InputDeleteButton';
