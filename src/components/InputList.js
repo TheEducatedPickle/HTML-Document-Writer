@@ -2,18 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import InputField from './InputField';
-import InputDeleteButton from './InputDeleteButton';
-import ListItem from '@material-ui/core/ListItem';
+import InputElement from './InputElement'
 import FloatingAddButton from './FloatingAddButton';
 const styles = theme => ({
     root: {
         width: '100%',
-        maxWidth: 500,
+        maxWidth: 400,
         backgroundColor: 'transparent',
-    },
-    nested: {
-        paddingLeft: theme.spacing.unit * 4,
     },
 });
 
@@ -30,8 +25,9 @@ class InputList extends React.Component {
     */
 
     handleAddElement = () => {
+        console.log(this.state.ElementArray);
         this.setState(state => ({
-            ElementArray: [state.ElementArray, ""],
+            ElementArray: state.ElementArray.concat(""),
         }))
     }
 
@@ -41,10 +37,7 @@ class InputList extends React.Component {
         return (
             <List component="list" className={classes.root}>
                 {this.state.ElementArray.map((text, index) => (
-                    <ListItem disableGutters>
-                        <InputField />
-                        <InputDeleteButton />
-                    </ListItem>
+                    <InputElement key={index}/>
                 ))}
                 <FloatingAddButton onClick={this.handleAddElement} />
             </List>

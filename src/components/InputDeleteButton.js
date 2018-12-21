@@ -15,7 +15,7 @@ function ButtonSizes(props) {
     return (
         <div>
             <IconButton aria-label="Delete" className={classes.icon}>
-                <DeleteIcon fontSize="medium" />
+                <DeleteIcon fontSize="default" />
             </IconButton>
         </div>
     );
