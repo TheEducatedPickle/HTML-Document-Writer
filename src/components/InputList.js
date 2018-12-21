@@ -1,3 +1,6 @@
+/*
+Inputlist is a dynamic list of inputElements
+*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -29,6 +32,7 @@ class InputList extends React.Component {
     };
     */
 
+    //Adds an input element to the array
     handleAddElement() {
         console.log(this.state.ElementArray);
         this.setState(state => ({
@@ -36,8 +40,12 @@ class InputList extends React.Component {
         }))
     }
 
+    //Removes an element at a given index from the list
     handleRemoveElement(index) {
-        console.log('Removing element at index ' + index);
+        console.log('Deleting element at index ' + index);
+        this.setState(state => ({
+            ElementArray: state.ElementArray.slice(0, index).concat(state.ElementArray.slice(index+1))
+            }))
     }
 
     render() {

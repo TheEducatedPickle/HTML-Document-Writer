@@ -1,3 +1,7 @@
+/*
+Input element contains a single list item that takes user input via a text field
+*/
+
 import React from 'react';
 import InputField from './InputField';
 import InputDeleteButton from './InputDeleteButton';
@@ -20,8 +24,7 @@ class InputElement extends React.Component {
         console.log(this.state.text);
     }
 
-    handleDelete() {
-        console.log(this.state.index);
+    handleDelete = () => {
         this.props.onDelete(this.state.index);
     }
 
@@ -29,7 +32,7 @@ class InputElement extends React.Component {
         return (
             <ListItem disableGutters>
                 <InputField onChange={this.handleTextChange}/>
-                <InputDeleteButton onClick={() => console.log(this.state.index)}/>
+                <InputDeleteButton onClick={this.handleDelete}/>
             </ListItem>
         );
     }
