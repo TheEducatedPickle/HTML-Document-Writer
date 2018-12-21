@@ -6,6 +6,9 @@ import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
     fab: {
+        position: 'fixed',
+        right: theme.spacing.unit * 2,
+        bottom: theme.spacing.unit * 2,
         margin: theme.spacing.unit,
     },
     extendedIcon: {

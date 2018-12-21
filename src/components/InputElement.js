@@ -3,7 +3,7 @@ Input element contains a single list item that takes user input via a text field
 */
 
 import React from 'react';
-import InputField from './InputField';
+import InputField from './InputTextField';
 import InputDeleteButton from './InputDeleteButton';
 import ListItem from '@material-ui/core/ListItem';
 
@@ -12,16 +12,12 @@ class InputElement extends React.Component {
         super(props);
         this.state = {
             index: this.props.index,
-            text: "",
         }
         this.handleTextChange = this.handleTextChange.bind(this);
     }
 
-    handleTextChange(event) {
-        this.setState(state => ({
-            text: event.target.value
-        }));
-        console.log(this.state.text);
+    handleTextChange(string) {
+        this.props.onChange(this.state.index, string);
     }
 
     handleDelete = () => {
