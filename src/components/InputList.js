@@ -13,10 +13,14 @@ const styles = theme => ({
 });
 
 class InputList extends React.Component {
-    state = {
-        open: true,
-        ElementArray: [""],
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: true,
+            ElementArray: [""],
+        };
+        this.handleAddElement = this.handleAddElement.bind(this);
+    }
 
     /*
     handleClick = () => {
@@ -24,7 +28,7 @@ class InputList extends React.Component {
     };
     */
 
-    handleAddElement = () => {
+    handleAddElement() {
         console.log(this.state.ElementArray);
         this.setState(state => ({
             ElementArray: state.ElementArray.concat(""),
@@ -37,7 +41,7 @@ class InputList extends React.Component {
         return (
             <List component="list" className={classes.root}>
                 {this.state.ElementArray.map((text, index) => (
-                    <InputElement key={index}/>
+                    <InputElement key={index} index={index} />
                 ))}
                 <FloatingAddButton onClick={this.handleAddElement} />
             </List>
