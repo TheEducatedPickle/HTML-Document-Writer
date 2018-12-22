@@ -29,7 +29,7 @@ class InputElement extends React.Component {
         return (
             <ListItem disableGutters>
                 <InputTypeSelector />
-                <InputField onChange={this.handleTextChange}/>
+                <InputField text={this.props.text} onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
             </ListItem>
         );

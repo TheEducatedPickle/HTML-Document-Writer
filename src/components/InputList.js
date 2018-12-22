@@ -9,7 +9,6 @@ import InputElement from './InputElement'
 import FloatingAddButton from './FloatingAddButton';
 const styles = theme => ({
     root: {
-        width: '100%',
         backgroundColor: 'transparent',
     },
 });
@@ -19,7 +18,7 @@ class InputList extends React.Component {
         super(props);
         this.state = {
             open: true,
-            ElementArray: [""],
+            elementArray: [""],
         };
         this.handleAddElement = this.handleAddElement.bind(this);
         this.handleRemoveElement = this.handleRemoveElement.bind(this);
@@ -31,12 +30,12 @@ class InputList extends React.Component {
       this.setState(state => ({ open: !state.open }));
     };
     */
-    
+
     //Adds an input element to the array
     handleAddElement() {
-        //console.log(this.state.ElementArray);
+        //console.log(this.state.elementArray);
         this.setState(prevState => ({
-            ElementArray: prevState.ElementArray.concat(''),
+            elementArray: prevState.elementArray.concat(''),
         }))
     }
 
@@ -44,21 +43,16 @@ class InputList extends React.Component {
     handleRemoveElement(index) {
         //console.log('Deleting element at index ' + index);
         this.setState(prevState => ({
-            ElementArray: prevState.ElementArray.slice(0, index).concat(prevState.ElementArray.slice(index+1))
+            elementArray: prevState.elementArray.slice(0, index).concat(prevState.elementArray.slice(index + 1))
         }))
     }
 
     handleChangeElement(index, string) {
-        console.log(index + " : " + string)
-        this.setState(prevState => ({
-            /*
-            ElementArray: (index, string) => {
-                let out = prevState.ElementArray.slice();
-                out.ElementArray[index] = string;
-                return out;
-            },
-            */
-        }))
+        let stateCopy = Object.assign({}, this.state);
+        stateCopy.elementArray = stateCopy.elementArray.slice();
+        stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index] = string;
+        this.setState(stateCopy);
     }
 
     render() {
@@ -66,12 +60,13 @@ class InputList extends React.Component {
 
         return (
             <List component="list" className={classes.root}>
-                {this.state.ElementArray.map((text, index) => (
-                    <InputElement 
-                        key={index} 
-                        index={index} 
+                {this.state.elementArray.map((text, index) => (
+                    <InputElement
+                        key={index}
+                        index={index}
                         onDelete={this.handleRemoveElement}
-                        onChange={this.handleChangeElement}    
+                        onChange={this.handleChangeElement}
+                        text={this.state.elementArray[index]}
                     />
                 ))}
                 <FloatingAddButton onClick={this.handleAddElement} />

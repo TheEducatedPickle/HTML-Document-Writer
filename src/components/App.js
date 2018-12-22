@@ -26,7 +26,7 @@ const styles = theme => ({
 function App(props) {
     const { classes } = props;
     return (
-        <div>
+        <div className='container'>
             <AppBar />
             <div className={classes.input}>
                 <InputList />

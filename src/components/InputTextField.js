@@ -39,6 +39,7 @@ class InputTextField extends React.Component {
         id="standard-textarea"
         label="Type your item here!"
         placeholder="Input"
+        value={this.props.text}
         multiline
         className={classes.textField}
         margin="normal"

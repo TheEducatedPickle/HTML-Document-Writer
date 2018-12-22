@@ -32,6 +32,7 @@ class InputTypeSelector extends React.Component {
                     value={this.state.type}
                     onChange={this.handleChange}
                 >
+                    <MenuItem value={'header'}>Header</MenuItem>
                     <MenuItem value={'paragraph'}>Paragraph</MenuItem>
                     <MenuItem value={'div'}>Div</MenuItem>
                 </Select>
