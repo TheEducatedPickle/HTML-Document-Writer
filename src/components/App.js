@@ -18,6 +18,7 @@ const styles = theme => ({
         left: theme.spacing.unit,
         width: '40%',
         padding: theme.spacing.unit * 3,
+        marginTop: '3%',
         margin: '2%',
     }
 })
@@ -32,7 +33,7 @@ function App(props) {
                 <Output />
             </div>
             <Paper className={classes.output}>
-                
+
             </Paper>
         </div>
     );

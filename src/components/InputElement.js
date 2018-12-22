@@ -6,6 +6,7 @@ import React from 'react';
 import InputField from './InputTextField';
 import InputDeleteButton from './InputDeleteButton';
 import ListItem from '@material-ui/core/ListItem';
+import InputTypeSelector from './InputTypeSelector';
 
 class InputElement extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class InputElement extends React.Component {
     render() {
         return (
             <ListItem disableGutters>
+                <InputTypeSelector />
                 <InputField onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
             </ListItem>

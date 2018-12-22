@@ -48,7 +48,7 @@ class InputTextField extends React.Component {
   }
 }
 
-TextField.propTypes = {
+InputTextField.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
