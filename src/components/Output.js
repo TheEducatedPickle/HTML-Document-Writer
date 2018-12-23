@@ -14,9 +14,16 @@ class Output extends React.Component {
     }
     render() {
         return (
+            /*
             <div class='outputRoot'>
             { () => this.toHtml('test', 'paragraph', document.head.firstElementChild) }
             </div>
+            */
+           <pre class="prettyprint">
+            <code class="language-java">
+
+            </code>
+           </pre>
         );
     }
 }

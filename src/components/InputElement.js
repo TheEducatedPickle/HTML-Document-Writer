@@ -18,17 +18,21 @@ class InputElement extends React.Component {
     }
 
     handleTextChange(string) {
-        this.props.onChange(this.state.index, string);
+        this.props.onChange(string, this.state.index);
     }
 
     handleDelete = () => {
         this.props.onDelete(this.state.index);
     }
 
+    handleSetType = (value) => {
+        this.props.onTypeSelect(value, this.state.index);
+    }
+
     render() {
         return (
             <ListItem disableGutters>
-                <InputTypeSelector />
+                <InputTypeSelector type={this.props.type} onChange={this.handleSetType}/>
                 <InputField text={this.props.text} onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
             </ListItem>

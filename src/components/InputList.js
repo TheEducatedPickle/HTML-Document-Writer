@@ -18,18 +18,16 @@ class InputList extends React.Component {
         super(props);
         this.state = {
             open: true,
-            elementArray: [""],
+            elementArray: [{
+                text: '',
+                type: 'paragraph',
+            }],
         };
         this.handleAddElement = this.handleAddElement.bind(this);
         this.handleRemoveElement = this.handleRemoveElement.bind(this);
         this.handleChangeElement = this.handleChangeElement.bind(this);
+        this.handleSetType = this.handleSetType.bind(this);
     }
-
-    /*
-    handleClick = () => {
-      this.setState(state => ({ open: !state.open }));
-    };
-    */
 
     //Adds an input element to the array
     handleAddElement() {
@@ -47,11 +45,20 @@ class InputList extends React.Component {
         }))
     }
 
-    handleChangeElement(index, string) {
+    handleChangeElement(string, index) {
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
-        stateCopy.elementArray[index] = string;
+        stateCopy.elementArray[index].text = string;
+        this.setState(stateCopy);
+    }
+
+    handleSetType(value, index) {
+        let stateCopy = Object.assign({}, this.state);
+        stateCopy.elementArray = stateCopy.elementArray.slice();
+        stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index].type = value;
+        console.log(index + " : " + stateCopy.elementArray[index].type);
         this.setState(stateCopy);
     }
 
@@ -64,9 +71,11 @@ class InputList extends React.Component {
                     <InputElement
                         key={index}
                         index={index}
+                        type={this.state.elementArray[index].type}
                         onDelete={this.handleRemoveElement}
                         onChange={this.handleChangeElement}
-                        text={this.state.elementArray[index]}
+                        onTypeSelect={this.handleSetType}
+                        text={this.state.elementArray[index].text}
                     />
                 ))}
                 <FloatingAddButton onClick={this.handleAddElement} />

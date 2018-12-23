@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
     selectField: {
-        width: 75
+        width: 60
     }
 });
 
@@ -15,12 +15,12 @@ class InputTypeSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'paragraph',
+            type: this.props.type,
         }
     }
 
     handleChange = event => {
-        this.setState({ type: event.target.value });
+        this.props.onChange(event.target.value);
       };
 
     render() {
@@ -29,7 +29,7 @@ class InputTypeSelector extends React.Component {
             <form>
                 <InputLabel>Block Type</InputLabel>
                 <Select
-                    value={this.state.type}
+                    value={this.props.type}
                     onChange={this.handleChange}
                 >
                     <MenuItem value={'header'}>Header</MenuItem>

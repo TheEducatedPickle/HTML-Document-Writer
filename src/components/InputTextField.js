@@ -37,8 +37,7 @@ class InputTextField extends React.Component {
     return (
       <TextField
         id="standard-textarea"
-        label="Type your item here!"
-        placeholder="Input"
+        label="Text"
         value={this.props.text}
         multiline
         className={classes.textField}

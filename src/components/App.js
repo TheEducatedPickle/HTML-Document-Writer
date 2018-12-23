@@ -9,13 +9,13 @@ import { Paper } from '@material-ui/core';
 const styles = theme => ({
     input: {
         position: 'fixed',
-        right: theme.spacing.unit * 2,
+        right: '2%',
         width: '45%',
         padding: theme.spacing.unit,
     },
     output: {
         position: 'fixed',
-        left: theme.spacing.unit,
+        left: 0,
         width: '40%',
         padding: theme.spacing.unit * 3,
         marginTop: '3%',
@@ -28,13 +28,12 @@ function App(props) {
     return (
         <div className='container'>
             <AppBar />
+            <Paper className={classes.output}>
+                <Output />
+            </Paper>
             <div className={classes.input}>
                 <InputList />
-                <Output />
             </div>
-            <Paper className={classes.output}>
-
-            </Paper>
         </div>
     );
 }
