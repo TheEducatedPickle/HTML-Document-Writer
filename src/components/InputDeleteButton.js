@@ -1,3 +1,5 @@
+//InputDeleteButton is the delete button displayed in inputElement
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -14,7 +16,7 @@ function ButtonSizes(props) {
     const { classes } = props;
     return (
         <div>
-            <IconButton aria-label="Delete" className={classes.icon} onClick={() => console.log(this.props)}>
+            <IconButton aria-label="Delete" className={classes.icon} onClick={props.onClick}>
                 <DeleteIcon fontSize="default" />
             </IconButton>
         </div>

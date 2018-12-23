@@ -24,7 +24,7 @@ function MenuBar(props) {
     <div className={classes.root}>
       <AppBar className={classes.menubar} position="static">
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            To Do
+            Text to HTML
           </Typography>
       </AppBar>
     </div>
