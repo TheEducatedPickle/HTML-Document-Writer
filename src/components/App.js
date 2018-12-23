@@ -23,19 +23,79 @@ const styles = theme => ({
     }
 })
 
-function App(props) {
-    const { classes } = props;
-    return (
-        <div className='container'>
-            <AppBar />
-            <Paper className={classes.output}>
-                <Output />
-            </Paper>
-            <div className={classes.input}>
-                <InputList />
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: true,
+            elementArray: [{
+                text: '',
+                type: 'paragraph',
+            }],
+        };
+        this.handleAddElement = this.handleAddElement.bind(this);
+        this.handleRemoveElement = this.handleRemoveElement.bind(this);
+        this.handleChangeElement = this.handleChangeElement.bind(this);
+        this.handleSetType = this.handleSetType.bind(this);
+    }
+
+    //Adds an input element to the array
+    handleAddElement() {
+        //console.log(this.state.elementArray);
+        this.setState(prevState => ({
+            elementArray: prevState.elementArray.concat(
+                {
+                    text: '',
+                    type: 'paragraph',
+                }
+            ),
+        }))
+    }
+
+    //Removes an element at a given index from the list
+    handleRemoveElement(index) {
+        //console.log('Deleting element at index ' + index);
+        this.setState(prevState => ({
+            elementArray: prevState.elementArray.slice(0, index).concat(prevState.elementArray.slice(index + 1))
+        }))
+    }
+
+    handleChangeElement(string, index) {
+        let stateCopy = Object.assign({}, this.state);
+        stateCopy.elementArray = stateCopy.elementArray.slice();
+        stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index].text = string;
+        this.setState(stateCopy);
+    }
+
+    handleSetType(value, index) {
+        let stateCopy = Object.assign({}, this.state);
+        stateCopy.elementArray = stateCopy.elementArray.slice();
+        stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index].type = value;
+        console.log(index + " : " + stateCopy.elementArray[index].type);
+        this.setState(stateCopy);
+    }
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className='container'>
+                <AppBar />
+                <Paper className={classes.output}>
+                    <Output />
+                </Paper>
+                <div className={classes.input}>
+                    <InputList 
+                        elementArray={this.state.elementArray}
+                        handleAddElement={this.handleAddElement}
+                        handleChangeElement={this.handleChangeElement}
+                        handleRemoveElement={this.handleRemoveElement}
+                        handleSetType={this.handleSetType}
+                    />
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 

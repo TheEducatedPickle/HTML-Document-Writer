@@ -1,4 +1,2 @@
-Write textOnChange to inputList.state and use this to feed expected text value to inputTextFields
-Fix delete button functionality to not delete last element
 Add copy button with < > icon
 Implement textToHTML function and display on output paper
