@@ -6,8 +6,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
-    selectField: {
-        width: 60
+    selectInput: {
+        width: 30,
+        padding: 10,
     }
 });
 
@@ -26,14 +27,14 @@ class InputTypeSelector extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <form>
+            <form className='selectInput'>
                 <InputLabel>Block Type</InputLabel>
                 <Select
                     value={this.props.type}
                     onChange={this.handleChange}
                 >
-                    <MenuItem value={'header'}>Header</MenuItem>
-                    <MenuItem value={'paragraph'}>Paragraph</MenuItem>
+                    <MenuItem value={'h1'}>Header</MenuItem>
+                    <MenuItem value={'p'}>Paragraph</MenuItem>
                     <MenuItem value={'div'}>Div</MenuItem>
                 </Select>
             </form>

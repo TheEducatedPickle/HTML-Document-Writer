@@ -18,12 +18,21 @@ class Output extends React.Component {
             <div class='outputRoot'>
             { () => this.toHtml('test', 'paragraph', document.head.firstElementChild) }
             </div>
-            */
            <pre class="prettyprint">
-            <code class="language-java">
 
-            </code>
            </pre>
+           */
+            <pre>
+                <h1>Output:</h1>
+                <hr></hr>
+                <code class="html">
+                    {this.props.elementArray.map((text, index) => (
+                        '<' + this.props.elementArray[index].type + '>'
+                        + this.props.elementArray[index].text 
+                        +'</' + this.props.elementArray[index].type + '>' + '\n'
+                    ))}
+                </code>
+            </pre>
         );
     }
 }

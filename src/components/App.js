@@ -10,14 +10,13 @@ const styles = theme => ({
     input: {
         position: 'fixed',
         right: '2%',
-        width: '45%',
-        padding: theme.spacing.unit,
+        width: '50%',
     },
     output: {
         position: 'fixed',
         left: 0,
-        width: '40%',
-        padding: theme.spacing.unit * 3,
+        width: '38%',
+        padding: theme.spacing.unit * 2,
         marginTop: '3%',
         margin: '2%',
     }
@@ -29,8 +28,8 @@ class App extends React.Component {
         this.state = {
             open: true,
             elementArray: [{
-                text: '',
-                type: 'paragraph',
+                text: '', 
+                type: 'p',
             }],
         };
         this.handleAddElement = this.handleAddElement.bind(this);
@@ -46,7 +45,7 @@ class App extends React.Component {
             elementArray: prevState.elementArray.concat(
                 {
                     text: '',
-                    type: 'paragraph',
+                    type: 'p',
                 }
             ),
         }))
@@ -82,7 +81,7 @@ class App extends React.Component {
             <div className='container'>
                 <AppBar />
                 <Paper className={classes.output}>
-                    <Output />
+                    <Output elementArray={this.state.elementArray}/>
                 </Paper>
                 <div className={classes.input}>
                     <InputList 
