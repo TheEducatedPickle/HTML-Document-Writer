@@ -10,13 +10,14 @@ const styles = theme => ({
     input: {
         position: 'fixed',
         right: '2%',
-        width: '50%',
+        width: '40%',
+        marginTop: '2%'
     },
     output: {
         position: 'fixed',
         left: 0,
-        width: '38%',
-        padding: theme.spacing.unit * 2,
+        width: '48%',
+        padding: '2%',
         marginTop: '3%',
         margin: '2%',
     }
