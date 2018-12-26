@@ -20,7 +20,7 @@ function FloatingActionButtons(props) {
     const { classes } = props;
 
     return (
-        <Fab color="primary" aria-label="Add" className={classes.fab} onClick={props.onClick}>
+        <Fab color="secondary" aria-label="Add" className={classes.fab} onClick={props.onClick}>
             <AddIcon />
         </Fab>
     );

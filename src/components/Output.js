@@ -1,8 +1,17 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import { grey } from '@material-ui/core/colors';
+import TextToOutput from './TextToOutput';
+import { Paper } from '@material-ui/core';
+/*
+import ContainedButton from './ContainedButton';
+import FormButton from './FormButton';
+*/
 const styles = theme => ({
 
+    output: {
+        padding: '5%',
+        paddingTop: '1.5%'
+    },
     header: {
         marginBottom: 4,
     },
@@ -34,7 +43,7 @@ class Output extends React.Component {
     }
     render() {
         const { classes } = this.props;
-        let startTemplate = '<!doctype html>\n<html lang="en">\n<head>\n\t<meta charset="utf-8">\n\t<title>The HTML5 Herald</title>\n\t<meta name="description" content="The HTML5 Herald">\n\t<meta name="author" content="SitePoint">\n\t<link rel="stylesheet" href="css/styles.css?v=1.0">\n</head>\n<body>\n'
+        let startTemplate = '<!doctype html>\n<html lang="en">\n<head>\n\t<meta charset="utf-8">\n\t<title>TextToHTML</title>\n\t<meta name="description" content="Description placeholder">\n\t<meta name="author" content="TextToHTML">\n\t<link rel="stylesheet" href="css/styles.css?v=1.0">\n</head>\n<body>\n'
         let endTemplate = '\t<script src="js/scripts.js"></script>\n</body>\n</html>'
         return (
             /*
@@ -45,21 +54,23 @@ class Output extends React.Component {
 
            </pre>
            */
-            <pre className={classes.output}>
-                <h1 className={classes.header}>Output:</h1>
-                <hr className={classes.hr} />
-                <div className={classes.code}>
-                    {startTemplate}
-                    <div className={classes.userInput}>{
-                        this.props.elementArray.map((text, index) => (
-                            '\t<' + this.props.elementArray[index].type + '>'
-                            + this.props.elementArray[index].text
-                            + '</' + this.props.elementArray[index].type + '>' + '\n'
-                        ))}
-                    </div>
-                    {endTemplate}
-                </div>
-            </pre>
+            <div>
+                {/*}
+                <ContainedButton label='Preview'/>
+                <FormButton label='Download' />
+                */}
+                <Paper className={classes.output}>
+                    <pre>
+                        <h2 className={classes.header}>Output:</h2>
+                        <hr className={classes.hr} />
+                        <div className={classes.code}>
+                            {startTemplate}
+                            <TextToOutput elementArray={this.props.elementArray} />
+                            {endTemplate}
+                        </div>
+                    </pre>
+                </Paper>
+            </div>
         );
     }
 }

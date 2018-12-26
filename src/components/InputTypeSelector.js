@@ -25,7 +25,6 @@ class InputTypeSelector extends React.Component {
       };
 
     render() {
-        const { classes } = this.props;
         return (
             <form className='selectInput'>
                 <InputLabel>Block Type</InputLabel>

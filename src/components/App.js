@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import InputList from './InputList'
 import Output from './Output'
 import AppBar from './MenuBar'
-import { Paper } from '@material-ui/core';
 
 const styles = theme => ({
     input: {
@@ -16,9 +15,8 @@ const styles = theme => ({
     output: {
         position: 'fixed',
         left: 0,
-        width: '48%',
-        padding: '2%',
-        marginTop: '3%',
+        width: '53%',
+        marginTop: '2%',
         margin: '2%',
     }
 })
@@ -81,9 +79,9 @@ class App extends React.Component {
         return (
             <div className='container'>
                 <AppBar />
-                <Paper className={classes.output}>
+                <div className={classes.output}>
                     <Output elementArray={this.state.elementArray}/>
-                </Paper>
+                </div>
                 <div className={classes.input}>
                     <InputList 
                         elementArray={this.state.elementArray}
