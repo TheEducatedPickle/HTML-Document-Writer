@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import InputArrayToHTML from '../util/InputArrayToHTML'
+import InputTreeToHTML from '../util/InputTreeToHTML'
 const styles = theme => ({
     userInput: {
         background: '#eeeeee'
@@ -10,9 +10,17 @@ const styles = theme => ({
 class TextToOutput extends React.Component {
     render() {
         const { classes } = this.props;
-        return (<div className={classes.userInput}>
-            {InputArrayToHTML(this.props.elementArray)}
-        </div>);
+        let startTemplate = '<!doctype html>\n<html lang="en">\n<head>\n\t<meta charset="utf-8">\n\t<title>TextToHTML</title>\n\t<meta name="description" content="Description placeholder">\n\t<meta name="author" content="TextToHTML">\n\t<link rel="stylesheet" href="css/styles.css?v=1.0">\n</head>\n<body>\n'
+        let endTemplate = '\t<script src="js/scripts.js"></script>\n</body>\n</html>'
+        return (
+            <div>
+                {startTemplate}
+                <div className={classes.userInput}>
+                    {InputTreeToHTML(this.props.elementArray)}
+                </div>
+                {endTemplate}
+            </div>
+        );
     }
 }
 

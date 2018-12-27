@@ -31,7 +31,7 @@ class InputElement extends React.Component {
 
     render() {
         return (
-            <ListItem style={{padding: 2}}disableGutters>
+            <ListItem style={{padding: 2}} disableGutters>
                 <InputTypeSelector 
                     type={this.props.type} 
                     onChange={this.handleSetType}

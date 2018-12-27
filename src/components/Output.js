@@ -43,8 +43,6 @@ class Output extends React.Component {
     }
     render() {
         const { classes } = this.props;
-        let startTemplate = '<!doctype html>\n<html lang="en">\n<head>\n\t<meta charset="utf-8">\n\t<title>TextToHTML</title>\n\t<meta name="description" content="Description placeholder">\n\t<meta name="author" content="TextToHTML">\n\t<link rel="stylesheet" href="css/styles.css?v=1.0">\n</head>\n<body>\n'
-        let endTemplate = '\t<script src="js/scripts.js"></script>\n</body>\n</html>'
         return (
             /*
             <div class='outputRoot'>
@@ -64,9 +62,7 @@ class Output extends React.Component {
                         <h2 className={classes.header}>Output:</h2>
                         <hr className={classes.hr} />
                         <div className={classes.code}>
-                            {startTemplate}
                             <TextToOutput elementArray={this.props.elementArray} />
-                            {endTemplate}
                         </div>
                     </pre>
                 </Paper>
