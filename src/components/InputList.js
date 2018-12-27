@@ -17,8 +17,10 @@ const styles = theme => ({
 class InputList extends React.Component {
 
     //Adds an input element to the array
-    handleAddElement = this.props.handleAddElement;
-
+    handleAddElement = (depth) => {
+        console.log(depth);
+        this.props.handleAddElement(depth);
+    }
 
     //Removes an element at a given index from the list
     handleRemoveElement = (index) => {
@@ -44,7 +46,9 @@ class InputList extends React.Component {
                         <InputElement
                             key={index}
                             index={index}
+                            depth={this.props.elementArray[index].getDepth()}
                             type={this.props.elementArray[index].getType()}
+                            onAdd={this.handleAddElement}
                             onDelete={this.handleRemoveElement}
                             onChange={this.handleChangeElement}
                             onTypeSelect={this.handleSetType}

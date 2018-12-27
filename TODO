@@ -1,3 +1,3 @@
+Fix depth after deleting parent element
 Make list scrollable when elements exceed bounds
 Add button for complex features
-Implement textToHTML function and display on output paper

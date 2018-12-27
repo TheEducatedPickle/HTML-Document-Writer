@@ -10,13 +10,13 @@ const styles = theme => ({
     input: {
         position: 'fixed',
         right: '2%',
-        width: '40%',
+        width: '45%',
         marginTop: '2%'
     },
     output: {
         position: 'fixed',
         left: 0,
-        width: '53%',
+        width: '50%',
         marginTop: '2%',
         margin: '2%',
     }
@@ -36,10 +36,10 @@ class App extends React.Component {
     }
 
     //Adds an input element to the array
-    handleAddElement() {
+    handleAddElement(depth) {
         //console.log(this.state.elementArray);
         this.setState(prevState => ({
-            elementArray: prevState.elementArray.concat(new HTMLElement(1)),
+            elementArray: prevState.elementArray.concat(new HTMLElement(depth)),
         }))
     }
 

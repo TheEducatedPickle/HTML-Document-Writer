@@ -7,12 +7,14 @@ import InputField from './InputTextField';
 import InputDeleteButton from './InputDeleteButton';
 import ListItem from '@material-ui/core/ListItem';
 import InputTypeSelector from './InputTypeSelector';
+import InputExtrasButton from './InputExtrasButton';
 
 class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             index: this.props.index,
+            depth: this.props.depth,
         }
         this.handleTextChange = this.handleTextChange.bind(this);
     }
@@ -53,6 +55,7 @@ class InputElement extends React.Component {
                 />
                 <InputField text={this.props.text} onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
+                <InputExtrasButton onAdd={() => this.props.onAdd(this.state.depth+1)}/>
             </ListItem>
         );
     }
