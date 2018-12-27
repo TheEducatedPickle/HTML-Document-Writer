@@ -7,8 +7,9 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import InputElement from './InputElement'
 import FloatingAddButton from './FloatingAddButton';
+
 const styles = theme => ({
-    root: {
+    list: {
         backgroundColor: 'transparent',
     },
 });
@@ -16,8 +17,8 @@ const styles = theme => ({
 class InputList extends React.Component {
 
     //Adds an input element to the array
-    handleAddElement = this.props.handleAddElement; 
-    
+    handleAddElement = this.props.handleAddElement;
+
 
     //Removes an element at a given index from the list
     handleRemoveElement = (index) => {
@@ -37,20 +38,22 @@ class InputList extends React.Component {
         const { classes } = this.props;
 
         return (
-            <List component="list" className={classes.root}>
-                {this.props.elementArray.map((text, index) => (
-                    <InputElement
-                        key={index}
-                        index={index}
-                        type={this.props.elementArray[index].type}
-                        onDelete={this.handleRemoveElement}
-                        onChange={this.handleChangeElement}
-                        onTypeSelect={this.handleSetType}
-                        text={this.props.elementArray[index].text}
-                    />
-                ))}
-                <FloatingAddButton onClick={this.handleAddElement} />
-            </List>
+            <div className={classes.root}>
+                <List component="list" className={classes.list} style={{maxHeight: '100%', overflow:'auto'}}>
+                    {this.props.elementArray.map((text, index) => (
+                        <InputElement
+                            key={index}
+                            index={index}
+                            type={this.props.elementArray[index].getType()}
+                            onDelete={this.handleRemoveElement}
+                            onChange={this.handleChangeElement}
+                            onTypeSelect={this.handleSetType}
+                            text={this.props.elementArray[index].getContent()}
+                        />
+                    ))}
+                    <FloatingAddButton onClick={this.handleAddElement} />
+                </List>
+            </div>
         );
     }
 }

@@ -27,14 +27,16 @@ class InputTypeSelector extends React.Component {
     render() {
         return (
             <form className='selectInput'>
-                <InputLabel>Block Type</InputLabel>
+                <InputLabel style={{fontSize: 12}}>{this.props.label}</InputLabel>
                 <Select
                     value={this.props.type}
                     onChange={this.handleChange}
                 >
-                    <MenuItem value={'h1'}>Header</MenuItem>
-                    <MenuItem value={'p'}>Paragraph</MenuItem>
-                    <MenuItem value={'div'}>Div</MenuItem>
+                    {this.props.options.map((text, index) => (
+                        <MenuItem value={this.props.options[index].value}>
+                            {this.props.options[index].label}
+                        </MenuItem>
+                    ))}
                 </Select>
             </form>
         );

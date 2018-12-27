@@ -1,23 +1,17 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
+import InputArrayToHTML from '../util/InputArrayToHTML'
 const styles = theme => ({
     userInput: {
         background: '#eeeeee'
     }
 });
 
-class TextToOutput extends React.Component{
-    formatOutput(string) {
-        return string.split('\n').join('\n\t');
-    }
+class TextToOutput extends React.Component {
     render() {
         const { classes } = this.props;
-        return (<div className={classes.userInput}>{
-            this.props.elementArray.map((text, index) => (
-                '\t<' + this.props.elementArray[index].type + '>'
-                + this.formatOutput(this.props.elementArray[index].text)
-                + '</' + this.props.elementArray[index].type + '>' + '\n'
-            ))}
+        return (<div className={classes.userInput}>
+            {InputArrayToHTML(this.props.elementArray)}
         </div>);
     }
 }

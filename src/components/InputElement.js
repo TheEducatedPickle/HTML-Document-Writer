@@ -31,8 +31,26 @@ class InputElement extends React.Component {
 
     render() {
         return (
-            <ListItem disableGutters>
-                <InputTypeSelector type={this.props.type} onChange={this.handleSetType}/>
+            <ListItem style={{padding: 2}}disableGutters>
+                <InputTypeSelector 
+                    type={this.props.type} 
+                    onChange={this.handleSetType}
+                    label={'Block Type'}
+                    options={[
+                    {
+                        label: 'Header',
+                        value: 'h1',
+                    },
+                    {
+                        label: 'Paragraph',
+                        value: 'p'
+                    },          
+                    {
+                        label: 'Div',
+                        value: 'div',
+                    },              
+                    ]}
+                />
                 <InputField text={this.props.text} onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
             </ListItem>

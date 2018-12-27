@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import InputList from './InputList'
 import Output from './Output'
 import AppBar from './MenuBar'
+import HTMLElement from '../models/HTMLElement'
 
 const styles = theme => ({
     input: {
@@ -26,10 +27,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             open: true,
-            elementArray: [{
-                text: '', 
-                type: 'p',
-            }],
+            elementArray: [new HTMLElement(1)],
         };
         this.handleAddElement = this.handleAddElement.bind(this);
         this.handleRemoveElement = this.handleRemoveElement.bind(this);
@@ -41,12 +39,7 @@ class App extends React.Component {
     handleAddElement() {
         //console.log(this.state.elementArray);
         this.setState(prevState => ({
-            elementArray: prevState.elementArray.concat(
-                {
-                    text: '',
-                    type: 'p',
-                }
-            ),
+            elementArray: prevState.elementArray.concat(new HTMLElement(1)),
         }))
     }
 
@@ -61,17 +54,17 @@ class App extends React.Component {
     handleChangeElement(string, index) {
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
-        stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
-        stateCopy.elementArray[index].text = string;
+        Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index].setContent(string);
         this.setState(stateCopy);
     }
 
     handleSetType(value, index) {
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
-        stateCopy.elementArray[index] = Object.assign({}, stateCopy.elementArray[index]);
-        stateCopy.elementArray[index].type = value;
-        console.log(index + " : " + stateCopy.elementArray[index].type);
+        Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index].setType(value);
+        //console.log(index + " : " + stateCopy.elementArray[index].type);
         this.setState(stateCopy);
     }
     render() {
