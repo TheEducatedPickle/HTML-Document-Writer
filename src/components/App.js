@@ -10,7 +10,7 @@ const styles = theme => ({
     input: {
         position: 'fixed',
         right: '2%',
-        width: '45%',
+        width: '44%',
         marginTop: '2%'
     },
     output: {

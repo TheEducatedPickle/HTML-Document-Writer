@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import InputElement from './InputElement'
 import FloatingAddButton from './FloatingAddButton';
+import HTMLElement from '../models/HTMLElement';
 
 const styles = theme => ({
     list: {
@@ -17,7 +18,11 @@ const styles = theme => ({
 class InputList extends React.Component {
 
     //Adds an input element to the array
-    handleAddElement = (depth) => {
+    handleAddElement = (depth, childData) => {
+        if (childData !== undefined) {
+            this.props.elementArray[childData.index].addChild(new HTMLElement(depth + 1));
+        
+        }
         console.log(depth);
         this.props.handleAddElement(depth);
     }
@@ -46,13 +51,11 @@ class InputList extends React.Component {
                         <InputElement
                             key={index}
                             index={index}
-                            depth={this.props.elementArray[index].getDepth()}
-                            type={this.props.elementArray[index].getType()}
+                            element={this.props.elementArray[index]}
                             onAdd={this.handleAddElement}
                             onDelete={this.handleRemoveElement}
                             onChange={this.handleChangeElement}
                             onTypeSelect={this.handleSetType}
-                            text={this.props.elementArray[index].getContent()}
                         />
                     ))}
                     <FloatingAddButton onClick={this.handleAddElement} />

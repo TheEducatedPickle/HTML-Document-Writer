@@ -7,10 +7,10 @@ function InputTreeToHTML(elementArray) {
         return '';
     }
     return elementArray.map((text, index) => (
-        '\t'.repeat(elementArray[index].getDepth()) + '<' + elementArray[index].type + '>'
+        ('\t'.repeat(elementArray[index].getDepth()) + '<' + elementArray[index].type + '>'
         + InputTreeToHTML(elementArray[index].getChildren()) 
         + formatInputString(elementArray[index]) 
-        + '</' + elementArray[index].type + '>' + '\n'
+        + '</' + elementArray[index].type + '>' + '\n').split('\n').join('\n' + '\t'.repeat(elementArray[index].getDepth()))
     ))
 }
 //Receives an input and applies the proper tabbing
@@ -19,7 +19,6 @@ function formatInputString(element) {
     for (let i = 0; i < noText.length; i++) {
         if (element.getType() === noText[i]) return "";
     }
-    let addTab = '\t'.repeat(element.getDepth());
-    return element.getContent().split('\n').join('\n' + addTab);
+    return element.getContent();
 }
 export default InputTreeToHTML;

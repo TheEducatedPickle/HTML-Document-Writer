@@ -14,9 +14,13 @@ class InputElement extends React.Component {
         super(props);
         this.state = {
             index: this.props.index,
-            depth: this.props.depth,
+            depth: this.props.element.getDepth(),
         }
         this.handleTextChange = this.handleTextChange.bind(this);
+    }
+
+    handleAdd = () => {
+        this.props.onAdd(this.state.depth+1, {index: this.state.index})
     }
 
     handleTextChange(string) {
@@ -35,7 +39,7 @@ class InputElement extends React.Component {
         return (
             <ListItem style={{padding: 2}} disableGutters>
                 <InputTypeSelector 
-                    type={this.props.type} 
+                    type={this.props.element.getType()} 
                     onChange={this.handleSetType}
                     label={'Block Type'}
                     options={[
@@ -55,7 +59,7 @@ class InputElement extends React.Component {
                 />
                 <InputField text={this.props.text} onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
-                <InputExtrasButton onAdd={() => this.props.onAdd(this.state.depth+1)}/>
+                <InputExtrasButton onAdd={this.handleAdd}/>
             </ListItem>
         );
     }
