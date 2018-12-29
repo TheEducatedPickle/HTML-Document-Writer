@@ -1,7 +1,6 @@
 -- In Progress --
 
 # Structure
-The front end is structured as follows
-App -> InputList -> InputField
-                 -> InputSelector
+App -> InputList -> InputElement -> InputField
+                                 -> InputSelector
     -> Output

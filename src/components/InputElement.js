@@ -20,7 +20,7 @@ class InputElement extends React.Component {
     }
 
     handleAdd = () => {
-        this.props.onAdd(this.state.depth+1, {index: this.state.index})
+        this.props.onAdd(this.state.depth+1, {parent: this.props.element})
     }
 
     handleTextChange(string) {
@@ -37,7 +37,7 @@ class InputElement extends React.Component {
 
     render() {
         return (
-            <ListItem style={{padding: 2}} disableGutters>
+            <ListItem style={{padding: 2, paddingLeft: (this.props.element.getDepth() - 1) * 25 }} disableGutters>
                 <InputTypeSelector 
                     type={this.props.element.getType()} 
                     onChange={this.handleSetType}

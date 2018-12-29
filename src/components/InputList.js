@@ -16,15 +16,17 @@ const styles = theme => ({
 });
 
 class InputList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            yelementArray: this.props.elementArray,
+        }
+    }
 
     //Adds an input element to the array
-    handleAddElement = (depth, childData) => {
-        if (childData !== undefined) {
-            this.props.elementArray[childData.index].addChild(new HTMLElement(depth + 1));
-        
-        }
-        console.log(depth);
-        this.props.handleAddElement(depth);
+    handleAddElement = (depth, parent) => {
+        //console.log(depth);
+        this.props.handleAddElement(depth, parent);
     }
 
     //Removes an element at a given index from the list
@@ -46,22 +48,34 @@ class InputList extends React.Component {
 
         return (
             <div className={classes.root}>
-                <List component="list" className={classes.list} style={{maxHeight: '100%', overflow:'auto'}}>
-                    {this.props.elementArray.map((text, index) => (
+                <List component="list" className={classes.list} style={{ maxHeight: '100%', overflow: 'auto' }}>
+                    {this.renderTree(this.props.elementArray)}
+                    <FloatingAddButton onClick={this.handleAddElement} />
+                </List>
+            </div>
+        );
+    }
+
+    renderTree(currentElements) {
+        console.log(currentElements);
+        return (
+            currentElements.map((text, index) => {
+                return (
+                    <div>
                         <InputElement
                             key={index}
                             index={index}
-                            element={this.props.elementArray[index]}
+                            element={currentElements[index]}
                             onAdd={this.handleAddElement}
                             onDelete={this.handleRemoveElement}
                             onChange={this.handleChangeElement}
                             onTypeSelect={this.handleSetType}
                         />
-                    ))}
-                    <FloatingAddButton onClick={this.handleAddElement} />
-                </List>
-            </div>
-        );
+                        {this.renderTree(currentElements[index].getChildren())}
+                    </div>
+                )
+            })
+        )
     }
 }
 

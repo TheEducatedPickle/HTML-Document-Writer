@@ -36,7 +36,12 @@ class App extends React.Component {
     }
 
     //Adds an input element to the array
-    handleAddElement(depth) {
+    handleAddElement(depth, childData) {
+        if (childData !== undefined) {
+            childData.parent.addChild(new HTMLElement(depth));
+            this.forceUpdate();
+            return;
+        }
         //console.log(this.state.elementArray);
         this.setState(prevState => ({
             elementArray: prevState.elementArray.concat(new HTMLElement(depth)),
@@ -73,10 +78,10 @@ class App extends React.Component {
             <div className='container'>
                 <AppBar />
                 <div className={classes.output}>
-                    <Output elementArray={this.state.elementArray}/>
+                    <Output elementArray={this.state.elementArray} />
                 </div>
                 <div className={classes.input}>
-                    <InputList 
+                    <InputList
                         elementArray={this.state.elementArray}
                         handleAddElement={this.handleAddElement}
                         handleChangeElement={this.handleChangeElement}

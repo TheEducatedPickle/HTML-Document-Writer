@@ -1,4 +1,5 @@
 Fix depth after deleting parent element
+Restructure adding child functionality to display without forceUpdate
 Fix rendering so child will be enclosed in parent
 Make list scrollable when elements exceed bounds
 Add button for complex features
