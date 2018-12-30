@@ -4,7 +4,7 @@ TextToHTML.js encodes the input tree as HTML using the InputTreeToHTML.js utilit
 
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import InputTreeToHTML from '../util/InputTreeToHTML'
+import InputTreeToHTML from '../../util/InputTreeToHTML'
 const styles = theme => ({
     userInput: {
         background: '#eeeeee'

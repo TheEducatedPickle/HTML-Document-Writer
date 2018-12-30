@@ -6,8 +6,8 @@ It passes this data to both input and output components to be rendered
 import React from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import InputList from './InputList'
-import Output from './Output'
+import InputList from './Input/InputList'
+import Output from './Output/Output'
 import AppBar from './MenuBar'
 import HTMLElement from '../models/HTMLElement'
 
