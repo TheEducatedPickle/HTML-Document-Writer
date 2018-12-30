@@ -1,3 +1,8 @@
+/*
+App contains the logic for handling user input data and stores it as a tree.
+It passes this data to both input and output components to be rendered
+*/
+
 import React from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,18 +12,27 @@ import AppBar from './MenuBar'
 import HTMLElement from '../models/HTMLElement'
 
 const styles = theme => ({
+    container: {
+        height: '100%',
+        width: '100%',
+        overflow: 'hidden',
+    },
     input: {
+        overflow: 'auto',
         position: 'fixed',
-        right: '2%',
-        width: '45%',
-        marginTop: '2%'
+        right: '0%',
+        height: '87%',
+        width: '46%',
+        marginTop: '2%',
     },
     output: {
+        height: '78%',
+        overflow: 'auto',
         position: 'fixed',
         left: 0,
-        width: '50%',
+        width: '49%',
         marginTop: '2%',
-        margin: '2%',
+        padding: '2%',
     }
 })
 
@@ -36,7 +50,13 @@ class App extends React.Component {
     }
 
     //Adds an input element to the array
-    handleAddElement(depth) {
+    handleAddElement(depth, childData) {
+        if (childData !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.addChild();
+            this.forceUpdate();
+            return;
+        }
         //console.log(this.state.elementArray);
         this.setState(prevState => ({
             elementArray: prevState.elementArray.concat(new HTMLElement(depth)),
@@ -44,14 +64,27 @@ class App extends React.Component {
     }
 
     //Removes an element at a given index from the list
-    handleRemoveElement(index) {
+    handleRemoveElement(index, childData) {
+        if (childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.removeChild(index);
+            this.forceUpdate();
+            return;
+        }
         //console.log('Deleting element at index ' + index);
         this.setState(prevState => ({
             elementArray: prevState.elementArray.slice(0, index).concat(prevState.elementArray.slice(index + 1))
         }))
     }
 
-    handleChangeElement(string, index) {
+    //Modify the contents at a given element
+    handleChangeElement(string, index, childData) {
+        if (childData !== undefined && childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.getChild(index).setContent(string);
+            this.forceUpdate();
+            return;
+        }
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         Object.assign({}, stateCopy.elementArray[index]);
@@ -59,7 +92,14 @@ class App extends React.Component {
         this.setState(stateCopy);
     }
 
-    handleSetType(value, index) {
+    //Changes the tag for a given element
+    handleSetType(value, index, childData) {
+        if (childData !== undefined && childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.getChild(index).setType(value);
+            this.forceUpdate();
+            return;
+        }
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         Object.assign({}, stateCopy.elementArray[index]);
@@ -73,10 +113,10 @@ class App extends React.Component {
             <div className='container'>
                 <AppBar />
                 <div className={classes.output}>
-                    <Output elementArray={this.state.elementArray}/>
+                    <Output elementArray={this.state.elementArray} />
                 </div>
                 <div className={classes.input}>
-                    <InputList 
+                    <InputList
                         elementArray={this.state.elementArray}
                         handleAddElement={this.handleAddElement}
                         handleChangeElement={this.handleChangeElement}

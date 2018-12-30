@@ -1,6 +1,10 @@
+/*
+Output.js is the frame for displaying the output code
+*/
+
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import TextToOutput from './TextToOutput';
+import TextToHTML from './TextToHTML';
 import { Paper } from '@material-ui/core';
 /*
 import ContainedButton from './ContainedButton';
@@ -22,7 +26,7 @@ const styles = theme => ({
         color: '#333333',
         fontSize: 14,
         lineHeight: 1.2,
-        tabSize: 4,
+        tabSize: 3,
     },
     userInput: {
         background: '#eeeeee'
@@ -62,7 +66,7 @@ class Output extends React.Component {
                         <h2 className={classes.header}>Output:</h2>
                         <hr className={classes.hr} />
                         <div className={classes.code}>
-                            <TextToOutput elementArray={this.props.elementArray} />
+                            <TextToHTML elementArray={this.props.elementArray} />
                         </div>
                     </pre>
                 </Paper>

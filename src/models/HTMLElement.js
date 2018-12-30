@@ -1,9 +1,10 @@
 class HTMLElement {
-    constructor(depth) {
+    constructor(depth, parent) {
         this.depth = depth;
         this.type = 'p';
         this.content = '';
         this.children = new Array(0);
+        this.parent = parent;
     }
     setDepth(depth) {
         this.depth = depth;
@@ -14,8 +15,14 @@ class HTMLElement {
     setContent(content) {
         this.content = content;
     }
-    addChild(newElement) {
-        this.children.push(newElement);
+    addChild() {
+        this.children.push(new HTMLElement(this.depth + 1, this));
+    }
+    removeChild(index) {
+        this.children.splice(index, 1);
+    }
+    getParent() {
+        return this.parent;
     }
     getType() {
         return this.type;
@@ -25,6 +32,9 @@ class HTMLElement {
     }
     getChildren() {
         return this.children;
+    }
+    getChild(index) {
+        return this.children[index];
     }
     getDepth() {
         return this.depth;

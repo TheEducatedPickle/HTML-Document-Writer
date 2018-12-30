@@ -1,5 +1,6 @@
 /*
-Input element contains a single list item that takes user input via a text field
+Input element contains a single list item that takes user input via a text field.
+It passes input data to InputList.js to be processed before passing to App.js
 */
 
 import React from 'react';
@@ -8,34 +9,39 @@ import InputDeleteButton from './InputDeleteButton';
 import ListItem from '@material-ui/core/ListItem';
 import InputTypeSelector from './InputTypeSelector';
 import InputExtrasButton from './InputExtrasButton';
+import InputAddButton from './InputAddButton';
 
 class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             index: this.props.index,
-            depth: this.props.depth,
+            depth: this.props.element.getDepth(),
         }
         this.handleTextChange = this.handleTextChange.bind(this);
     }
 
+    handleAdd = () => {
+        this.props.onAdd(this.state.depth+1, {parent: this.props.element})
+    }
+
     handleTextChange(string) {
-        this.props.onChange(string, this.state.index);
+        this.props.onChange(string, this.state.index, {parent: this.props.element.getParent()});
     }
 
     handleDelete = () => {
-        this.props.onDelete(this.state.index);
+        this.props.onDelete(this.state.index, {parent: this.props.element.getParent()});
     }
 
     handleSetType = (value) => {
-        this.props.onTypeSelect(value, this.state.index);
+        this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
     }
 
     render() {
         return (
-            <ListItem style={{padding: 2}} disableGutters>
+            <ListItem style={{padding: 2, paddingLeft: (this.props.element.getDepth() - 1) * 25 }} disableGutters>
                 <InputTypeSelector 
-                    type={this.props.type} 
+                    type={this.props.element.getType()} 
                     onChange={this.handleSetType}
                     label={'Block Type'}
                     options={[
@@ -50,12 +56,17 @@ class InputElement extends React.Component {
                     {
                         label: 'Div',
                         value: 'div',
-                    },              
+                    },
+                    {
+                        label: 'Attribute',
+                        value: 'a',
+                    }              
                     ]}
                 />
-                <InputField text={this.props.text} onChange={this.handleTextChange}/>
+                <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
+                <InputAddButton onAdd={this.handleAdd}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
-                <InputExtrasButton onAdd={() => this.props.onAdd(this.state.depth+1)}/>
+                <InputExtrasButton onAdd={this.handleAdd}/>
             </ListItem>
         );
     }

@@ -33,7 +33,7 @@ class InputTypeSelector extends React.Component {
                     onChange={this.handleChange}
                 >
                     {this.props.options.map((text, index) => (
-                        <MenuItem value={this.props.options[index].value}>
+                        <MenuItem key={index} value={this.props.options[index].value}>
                             {this.props.options[index].label}
                         </MenuItem>
                     ))}
