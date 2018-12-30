@@ -6,9 +6,11 @@ function InputTreeToHTML(elementArray) {
     if (elementArray.length === 0) {
         return '';
     }
+    
     return elementArray.map((text, index) => ( elementArray[index].getChildren().length === 0 ?
         renderWithoutChildren(elementArray[index]) : renderWithChildren(elementArray[index])
     ))
+    //return elementArray.map((text, index) => (renderWithChildren(elementArray[index])
 }
 
 //HTML elements are rendered with new line in between opening and closing markers, and children are rendered recursively
@@ -34,8 +36,8 @@ function formatInputString(element) {
     }
     return element.getContent();
 }
-function formatTabbing(string) {
-    let addTab = '\t';
+function formatTabbing(string, amount=1) {
+    let addTab = '\t'.repeat(amount);
     return string.split('\n').join('\n' + addTab);
 }
 export default InputTreeToHTML;

@@ -1,5 +1,7 @@
 /*
-Inputlist is a dynamic list of inputElements
+Inputlist is a dynamic list of inputElements.
+It also acts as an intermediate step for populating InputElement event functions 
+with additional arguments before passing to App.js
 */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -7,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import InputElement from './InputElement'
 import FloatingAddButton from './FloatingAddButton';
-import HTMLElement from '../models/HTMLElement';
 
 const styles = theme => ({
     list: {
@@ -19,28 +20,28 @@ class InputList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            yelementArray: this.props.elementArray,
+            elementArray: this.props.elementArray,
         }
     }
 
     //Adds an input element to the array
-    handleAddElement = (depth, parent) => {
+    handleAddElement = (depth, childData) => {
         //console.log(depth);
-        this.props.handleAddElement(depth, parent);
+        this.props.handleAddElement(depth, childData);
     }
 
     //Removes an element at a given index from the list
-    handleRemoveElement = (index) => {
+    handleRemoveElement = (index, childData) => {
         //console.log('Deleting element at index ' + index);
-        this.props.handleRemoveElement(index);
+        this.props.handleRemoveElement(index, childData);
     }
 
-    handleChangeElement = (string, index) => {
-        this.props.handleChangeElement(string, index);
+    handleChangeElement = (string, index, childData) => {
+        this.props.handleChangeElement(string, index, childData);
     }
 
-    handleSetType = (value, index) => {
-        this.props.handleSetType(value, index);
+    handleSetType = (value, index, childData) => {
+        this.props.handleSetType(value, index, childData);
     }
 
     render() {
@@ -57,7 +58,7 @@ class InputList extends React.Component {
     }
 
     renderTree(currentElements) {
-        console.log(currentElements);
+        //console.log(currentElements);
         return (
             currentElements.map((text, index) => {
                 return (

@@ -1,5 +1,6 @@
 /*
-Input element contains a single list item that takes user input via a text field
+Input element contains a single list item that takes user input via a text field.
+It passes input data to InputList.js to be processed before passing to App.js
 */
 
 import React from 'react';
@@ -24,15 +25,15 @@ class InputElement extends React.Component {
     }
 
     handleTextChange(string) {
-        this.props.onChange(string, this.state.index);
+        this.props.onChange(string, this.state.index, {parent: this.props.element.getParent()});
     }
 
     handleDelete = () => {
-        this.props.onDelete(this.state.index);
+        this.props.onDelete(this.state.index, {parent: this.props.element.getParent()});
     }
 
     handleSetType = (value) => {
-        this.props.onTypeSelect(value, this.state.index);
+        this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
     }
 
     render() {
@@ -57,7 +58,7 @@ class InputElement extends React.Component {
                     },              
                     ]}
                 />
-                <InputField text={this.props.text} onChange={this.handleTextChange}/>
+                <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
                 <InputExtrasButton onAdd={this.handleAdd}/>
             </ListItem>

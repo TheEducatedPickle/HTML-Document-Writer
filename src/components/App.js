@@ -1,3 +1,8 @@
+/*
+App contains the logic for handling user input data and stores it as a tree.
+It passes this data to both input and output components to be rendered
+*/
+
 import React from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -38,7 +43,8 @@ class App extends React.Component {
     //Adds an input element to the array
     handleAddElement(depth, childData) {
         if (childData !== undefined) {
-            childData.parent.addChild(new HTMLElement(depth));
+            //console.log(childData.parent);
+            childData.parent.addChild();
             this.forceUpdate();
             return;
         }
@@ -49,14 +55,26 @@ class App extends React.Component {
     }
 
     //Removes an element at a given index from the list
-    handleRemoveElement(index) {
+    handleRemoveElement(index, childData) {
+        if (childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.removeChild(index);
+            this.forceUpdate();
+            return;
+        }
         //console.log('Deleting element at index ' + index);
         this.setState(prevState => ({
             elementArray: prevState.elementArray.slice(0, index).concat(prevState.elementArray.slice(index + 1))
         }))
     }
 
-    handleChangeElement(string, index) {
+    handleChangeElement(string, index, childData) {
+        if (childData !== undefined && childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.getChild(index).setContent(string);
+            this.forceUpdate();
+            return;
+        }
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         Object.assign({}, stateCopy.elementArray[index]);
@@ -64,7 +82,13 @@ class App extends React.Component {
         this.setState(stateCopy);
     }
 
-    handleSetType(value, index) {
+    handleSetType(value, index, childData) {
+        if (childData !== undefined && childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.getChild(index).setType(value);
+            this.forceUpdate();
+            return;
+        }
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         Object.assign({}, stateCopy.elementArray[index]);
