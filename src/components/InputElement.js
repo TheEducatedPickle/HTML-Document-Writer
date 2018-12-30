@@ -9,6 +9,7 @@ import InputDeleteButton from './InputDeleteButton';
 import ListItem from '@material-ui/core/ListItem';
 import InputTypeSelector from './InputTypeSelector';
 import InputExtrasButton from './InputExtrasButton';
+import InputAddButton from './InputAddButton';
 
 class InputElement extends React.Component {
     constructor(props) {
@@ -55,10 +56,15 @@ class InputElement extends React.Component {
                     {
                         label: 'Div',
                         value: 'div',
-                    },              
+                    },
+                    {
+                        label: 'Attribute',
+                        value: 'a',
+                    }              
                     ]}
                 />
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
+                <InputAddButton onAdd={this.handleAdd}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
                 <InputExtrasButton onAdd={this.handleAdd}/>
             </ListItem>

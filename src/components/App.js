@@ -13,6 +13,7 @@ import HTMLElement from '../models/HTMLElement'
 
 const styles = theme => ({
     input: {
+        overflow: 'auto',
         position: 'fixed',
         right: '2%',
         width: '44%',
@@ -68,6 +69,7 @@ class App extends React.Component {
         }))
     }
 
+    //Modify the contents at a given element
     handleChangeElement(string, index, childData) {
         if (childData !== undefined && childData.parent !== undefined) {
             //console.log(childData.parent);
@@ -82,6 +84,7 @@ class App extends React.Component {
         this.setState(stateCopy);
     }
 
+    //Changes the tag for a given element
     handleSetType(value, index, childData) {
         if (childData !== undefined && childData.parent !== undefined) {
             //console.log(childData.parent);

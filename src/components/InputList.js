@@ -11,7 +11,11 @@ import InputElement from './InputElement'
 import FloatingAddButton from './FloatingAddButton';
 
 const styles = theme => ({
+    root: {
+        overflow: 'auto',
+    },
     list: {
+        overflow: 'auto',
         backgroundColor: 'transparent',
     },
 });
@@ -24,7 +28,7 @@ class InputList extends React.Component {
         }
     }
 
-    //Adds an input element to the array
+    //Instructs App.js to add an input element to the array
     handleAddElement = (depth, childData) => {
         //console.log(depth);
         this.props.handleAddElement(depth, childData);
@@ -36,10 +40,12 @@ class InputList extends React.Component {
         this.props.handleRemoveElement(index, childData);
     }
 
+    //Modify the contents at a given element
     handleChangeElement = (string, index, childData) => {
         this.props.handleChangeElement(string, index, childData);
     }
 
+    //Changes the tag for a given element
     handleSetType = (value, index, childData) => {
         this.props.handleSetType(value, index, childData);
     }

@@ -7,9 +7,11 @@ function InputTreeToHTML(elementArray) {
         return '';
     }
     
-    return elementArray.map((text, index) => ( elementArray[index].getChildren().length === 0 ?
+    let output = elementArray.map((text, index) => ( elementArray[index].getChildren().length === 0 ?
         renderWithoutChildren(elementArray[index]) : renderWithChildren(elementArray[index])
     ))
+    output[0] = output[0].substr(1);    //Remove first newLine
+    return output;
     //return elementArray.map((text, index) => (renderWithChildren(elementArray[index])
 }
 
