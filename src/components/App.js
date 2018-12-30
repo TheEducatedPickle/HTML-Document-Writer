@@ -12,19 +12,27 @@ import AppBar from './MenuBar'
 import HTMLElement from '../models/HTMLElement'
 
 const styles = theme => ({
+    container: {
+        height: '100%',
+        width: '100%',
+        overflow: 'hidden',
+    },
     input: {
         overflow: 'auto',
         position: 'fixed',
-        right: '2%',
-        width: '44%',
-        marginTop: '2%'
+        right: '0%',
+        height: '87%',
+        width: '46%',
+        marginTop: '2%',
     },
     output: {
+        height: '78%',
+        overflow: 'auto',
         position: 'fixed',
         left: 0,
-        width: '50%',
+        width: '49%',
         marginTop: '2%',
-        margin: '2%',
+        padding: '2%',
     }
 })
 

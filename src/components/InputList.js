@@ -7,16 +7,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import InputElement from './InputElement'
+import InputElement from './InputComponent/InputElement'
 import FloatingAddButton from './FloatingAddButton';
 
 const styles = theme => ({
-    root: {
-        overflow: 'auto',
-    },
     list: {
         overflow: 'auto',
         backgroundColor: 'transparent',
+        paddingBottom: 60,
+        marginBottom: 60,
     },
 });
 
