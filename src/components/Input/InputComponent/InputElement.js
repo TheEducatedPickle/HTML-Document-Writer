@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import InputTypeSelector from './InputTypeSelector';
 import InputExtrasButton from './InputExtrasButton';
 import InputAddButton from './InputAddButton';
+import InputDialog from './InputDialog';
 
 class InputElement extends React.Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class InputElement extends React.Component {
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
                 <InputAddButton onAdd={this.handleAdd}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
-                <InputExtrasButton onAdd={this.handleAdd}/>
+                <InputExtrasButton onClick={this.handleAdd}/>
             </ListItem>
         );
     }

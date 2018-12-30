@@ -17,7 +17,7 @@ function InputExtrasButton(props) {
     const { classes } = props;
     return (
         <div>
-            <IconButton aria-label="More" className={classes.icon} onClick={props.onAdd}>
+            <IconButton aria-label="More" className={classes.icon} onClick={props.onClick}>
                 <MoreVertIcon />
             </IconButton>
         </div>
