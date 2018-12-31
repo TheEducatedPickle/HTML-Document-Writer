@@ -5,6 +5,7 @@ class HTMLElement {
         this.content = '';
         this.children = new Array(0);
         this.parent = parent;
+        this.fields = new Array(0);
     }
     setDepth(depth) {
         this.depth = depth;
@@ -38,6 +39,18 @@ class HTMLElement {
     }
     getDepth() {
         return this.depth;
+    }
+    getOpeningTag() {
+        if (this.type === 'custom') {
+            return '';
+        } 
+        return '<' + this.type + '>';
+    }
+    getClosingTag() {
+        if (this.type === 'custom') {
+            return '';
+        } 
+        return '</' + this.type + '>';
     }
 }
 
