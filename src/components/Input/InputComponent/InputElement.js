@@ -61,7 +61,11 @@ class InputElement extends React.Component {
                     {
                         label: 'Attribute',
                         value: 'a',
-                    }              
+                    },  
+                    {
+                        label: 'Custom',
+                        value: 'custom',
+                    }            
                     ]}
                 />
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
