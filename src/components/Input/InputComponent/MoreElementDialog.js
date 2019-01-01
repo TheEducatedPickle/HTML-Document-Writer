@@ -20,6 +20,10 @@ export default class FormDialog extends React.Component {
     this.setState({ open: false });
   };
 
+  componentWillReceiveProps(newProps) {
+    this.setState({open: newProps.open});
+  }
+
   render() {
     return (
       <div>
@@ -38,7 +42,7 @@ export default class FormDialog extends React.Component {
               margin="dense"
               id="name"
               label="Email Address"
-              type="email"
+              type="text"
               fullWidth
             />
           </DialogContent>
@@ -47,7 +51,7 @@ export default class FormDialog extends React.Component {
               Cancel
             </Button>
             <Button onClick={this.handleClose} color="primary">
-              Subscribe
+              Confirm
             </Button>
           </DialogActions>
         </Dialog>

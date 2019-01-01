@@ -10,16 +10,18 @@ import ListItem from '@material-ui/core/ListItem';
 import InputTypeSelector from './InputTypeSelector';
 import InputExtrasButton from './InputExtrasButton';
 import InputAddButton from './InputAddButton';
-import InputDialog from './InputDialog';
+import MoreElementDialog from './MoreElementDialog'
 
 class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            dialogOpen: false,
             index: this.props.index,
             depth: this.props.element.getDepth(),
         }
         this.handleTextChange = this.handleTextChange.bind(this);
+        this.toggleDialog = this.toggleDialog.bind(this);
     }
 
     handleAdd = () => {
@@ -36,6 +38,13 @@ class InputElement extends React.Component {
 
     handleSetType = (value) => {
         this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
+    }
+
+    toggleDialog() {
+        this.setState(prevState => ({
+            dialogOpen: !prevState.dialogOpen,
+        }))
+        console.log(this.state.dialogOpen)
     }
 
     render() {
@@ -71,7 +80,9 @@ class InputElement extends React.Component {
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
                 <InputAddButton onAdd={this.handleAdd}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
-                <InputExtrasButton onClick={this.handleAdd}/>
+                <InputExtrasButton onClick={this.toggleDialog}/>
+
+                <MoreElementDialog type={this.props.element.getType()} open={this.state.dialogOpen}/>
             </ListItem>
         );
     }
