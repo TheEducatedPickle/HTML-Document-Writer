@@ -10,32 +10,39 @@ import ListItem from '@material-ui/core/ListItem';
 import InputTypeSelector from './InputTypeSelector';
 import InputExtrasButton from './InputExtrasButton';
 import InputAddButton from './InputAddButton';
-import InputDialog from './InputDialog';
+import MoreElementDialog from './MoreElementDialog'
 
 class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            dialogOpen: false,
             index: this.props.index,
-            depth: this.props.element.getDepth(),
         }
         this.handleTextChange = this.handleTextChange.bind(this);
+        this.toggleDialog = this.toggleDialog.bind(this);
     }
 
     handleAdd = () => {
-        this.props.onAdd(this.state.depth+1, {parent: this.props.element})
+        this.props.onAdd(this.props.element.getDepth()+1, {parent: this.props.element})
     }
-
-    handleTextChange(string) {
-        this.props.onChange(string, this.state.index, {parent: this.props.element.getParent()});
+    handleTextChange(e) {
+        this.props.onChange(e, this.state.index, {parent: this.props.element.getParent()});
     }
-
     handleDelete = () => {
         this.props.onDelete(this.state.index, {parent: this.props.element.getParent()});
     }
-
     handleSetType = (value) => {
         this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
+    }
+    handleSetAttributes = (attr) => {
+        this.props.onSetAttributes(attr, this.state.index, {parent: this.props.element.getParent()});
+    }
+    toggleDialog() {
+        this.setState(prevState => ({
+            dialogOpen: !prevState.dialogOpen,
+        }))
+        console.log(this.state.dialogOpen)
     }
 
     render() {
@@ -71,7 +78,14 @@ class InputElement extends React.Component {
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
                 <InputAddButton onAdd={this.handleAdd}/>
                 <InputDeleteButton onClick={this.handleDelete}/>
-                <InputExtrasButton onClick={this.handleAdd}/>
+                <InputExtrasButton onClick={this.toggleDialog}/>
+
+                <MoreElementDialog 
+                    type={this.props.element.getType()} 
+                    onSetAttributes={this.handleSetAttributes}
+                    text={this.props.element.getAttributes()}
+                    open={this.state.dialogOpen} 
+                    toggleDialog={this.toggleDialog}/>
             </ListItem>
         );
     }

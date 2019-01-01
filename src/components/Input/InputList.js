@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import InputElement from './InputComponent/InputElement'
-import FloatingAddButton from './FloatingAddButton';
+import FloatingAddButton from '../experimental/FloatingAddButton';
 
 const styles = theme => ({
     list: {
@@ -40,13 +40,17 @@ class InputList extends React.Component {
     }
 
     //Modify the contents at a given element
-    handleChangeElement = (string, index, childData) => {
-        this.props.handleChangeElement(string, index, childData);
+    handleChangeElement = (e, index, childData) => {
+        this.props.handleChangeElement(e, index, childData);
     }
 
     //Changes the tag for a given element
     handleSetType = (value, index, childData) => {
         this.props.handleSetType(value, index, childData);
+    }
+
+    handleSetAttributes = (attr, index, childData) => {
+        this.props.handleSetAttributes(attr, index, childData);
     }
 
     render() {
@@ -76,6 +80,7 @@ class InputList extends React.Component {
                             onDelete={this.handleRemoveElement}
                             onChange={this.handleChangeElement}
                             onTypeSelect={this.handleSetType}
+                            onSetAttributes={this.handleSetAttributes}
                         />
                         {this.renderTree(currentElements[index].getChildren())}
                     </div>

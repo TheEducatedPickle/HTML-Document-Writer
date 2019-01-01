@@ -47,6 +47,7 @@ class App extends React.Component {
         this.handleRemoveElement = this.handleRemoveElement.bind(this);
         this.handleChangeElement = this.handleChangeElement.bind(this);
         this.handleSetType = this.handleSetType.bind(this);
+        this.handleSetAttributes = this.handleSetAttributes.bind(this);
     }
 
     //Adds an input element to the array
@@ -78,17 +79,17 @@ class App extends React.Component {
     }
 
     //Modify the contents at a given element
-    handleChangeElement(string, index, childData) {
+    handleChangeElement(e, index, childData) {
         if (childData !== undefined && childData.parent !== undefined) {
             //console.log(childData.parent);
-            childData.parent.getChild(index).setContent(string);
+            childData.parent.getChild(index).setContent(e.target.value);
             this.forceUpdate();
             return;
         }
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         Object.assign({}, stateCopy.elementArray[index]);
-        stateCopy.elementArray[index].setContent(string);
+        stateCopy.elementArray[index].setContent(e.target.value);
         this.setState(stateCopy);
     }
 
@@ -107,6 +108,20 @@ class App extends React.Component {
         //console.log(index + " : " + stateCopy.elementArray[index].type);
         this.setState(stateCopy);
     }
+    handleSetAttributes(attr, index, childData) {
+        if (childData !== undefined && childData.parent !== undefined) {
+            //console.log(childData.parent);
+            childData.parent.getChild(index).setAttributes(attr);
+            this.forceUpdate();
+            return;
+        }
+        let stateCopy = Object.assign({}, this.state);
+        stateCopy.elementArray = stateCopy.elementArray.slice();
+        Object.assign({}, stateCopy.elementArray[index]);
+        stateCopy.elementArray[index].setAttributes(attr);
+        //console.log(index + " : " + stateCopy.elementArray[index].type);
+        this.setState(stateCopy);
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -122,6 +137,7 @@ class App extends React.Component {
                         handleChangeElement={this.handleChangeElement}
                         handleRemoveElement={this.handleRemoveElement}
                         handleSetType={this.handleSetType}
+                        handleSetAttributes={this.handleSetAttributes}
                     />
                 </div>
             </div>

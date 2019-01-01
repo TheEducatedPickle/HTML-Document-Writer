@@ -8,27 +8,36 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class FormDialog extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      text: this.props.text
+    };
+    this.handleSetAttributes = this.handleSetAttributes.bind(this)
+  }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      open: newProps.open,
+      text: newProps.text,
+    });
+  }
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  handleSetAttributes() {
+    this.props.onSetAttributes(this.state.text);
+    this.props.toggleDialog();
+  }
 
   render() {
     return (
       <div>
         <Dialog
           open={this.state.open}
-          onClose={this.handleClose}
+          onClose={this.props.toggleDialog}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Attributes</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add Attributes</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Set attributes for your <b>{this.props.type}</b> tag here
@@ -37,17 +46,19 @@ export default class FormDialog extends React.Component {
               autoFocus
               margin="dense"
               id="name"
-              label="Email Address"
-              type="email"
+              label="Attributes"
+              type="text"
               fullWidth
+              value={this.state.text}
+              onChange={(e) => this.setState({text: e.target.value})}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.props.toggleDialog} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Subscribe
+            <Button onClick={this.handleSetAttributes} color="primary">
+              Confirm
             </Button>
           </DialogActions>
         </Dialog>
