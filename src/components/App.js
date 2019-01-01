@@ -108,17 +108,17 @@ class App extends React.Component {
         //console.log(index + " : " + stateCopy.elementArray[index].type);
         this.setState(stateCopy);
     }
-    handleSetAttributes(e, index, childData) {
+    handleSetAttributes(attr, index, childData) {
         if (childData !== undefined && childData.parent !== undefined) {
             //console.log(childData.parent);
-            childData.parent.getChild(index).setAttributes(e.target.value);
+            childData.parent.getChild(index).setAttributes(attr);
             this.forceUpdate();
             return;
         }
         let stateCopy = Object.assign({}, this.state);
         stateCopy.elementArray = stateCopy.elementArray.slice();
         Object.assign({}, stateCopy.elementArray[index]);
-        stateCopy.elementArray[index].setAttributes(e.target.value);
+        stateCopy.elementArray[index].setAttributes(attr);
         //console.log(index + " : " + stateCopy.elementArray[index].type);
         this.setState(stateCopy);
     }

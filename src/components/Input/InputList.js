@@ -49,8 +49,8 @@ class InputList extends React.Component {
         this.props.handleSetType(value, index, childData);
     }
 
-    handleSetAttributes = (e, index, childData) => {
-        this.props.handleSetAttributes(e, index, childData);
+    handleSetAttributes = (attr, index, childData) => {
+        this.props.handleSetAttributes(attr, index, childData);
     }
 
     render() {

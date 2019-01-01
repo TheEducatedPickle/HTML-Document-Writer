@@ -8,12 +8,25 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class FormDialog extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      text: this.props.text
+    };
+    this.handleSetAttributes = this.handleSetAttributes.bind(this)
+  }
 
   componentWillReceiveProps(newProps) {
-    this.setState({open: newProps.open});
+    this.setState({
+      open: newProps.open,
+      text: newProps.text,
+    });
+  }
+
+  handleSetAttributes() {
+    this.props.onSetAttributes(this.state.text);
+    this.props.toggleDialog();
   }
 
   render() {
@@ -36,15 +49,15 @@ export default class FormDialog extends React.Component {
               label="Attributes"
               type="text"
               fullWidth
-              value={this.props.text}
-              onChange={(e) => this.props.onSetAttributes(e)}
+              value={this.state.text}
+              onChange={(e) => this.setState({text: e.target.value})}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.props.toggleDialog} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.props.toggleDialog} color="primary">
+            <Button onClick={this.handleSetAttributes} color="primary">
               Confirm
             </Button>
           </DialogActions>

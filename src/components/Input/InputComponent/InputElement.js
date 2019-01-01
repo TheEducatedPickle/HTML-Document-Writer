@@ -35,8 +35,8 @@ class InputElement extends React.Component {
     handleSetType = (value) => {
         this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
     }
-    handleSetAttributes = (e) => {
-        this.props.onSetAttributes(e, this.state.index, {parent: this.props.element.getParent()});
+    handleSetAttributes = (attr) => {
+        this.props.onSetAttributes(attr, this.state.index, {parent: this.props.element.getParent()});
     }
     toggleDialog() {
         this.setState(prevState => ({
