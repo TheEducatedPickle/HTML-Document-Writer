@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import InputElement from './InputComponent/InputElement'
-import FloatingAddButton from './FloatingAddButton';
+import FloatingAddButton from '../experimental/FloatingAddButton';
 
 const styles = theme => ({
     list: {
