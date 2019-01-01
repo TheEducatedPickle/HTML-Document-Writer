@@ -42,7 +42,7 @@ class InputTextField extends React.Component {
         multiline
         className={classes.textField}
         margin="normal"
-        onChange={(event) => this.props.onChange(event.target.value)}
+        onChange={(e) => this.props.onChange(e)}
       />
     );
   }

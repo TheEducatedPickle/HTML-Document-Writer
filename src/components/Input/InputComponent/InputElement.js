@@ -18,23 +18,25 @@ class InputElement extends React.Component {
         this.state = {
             dialogOpen: false,
             index: this.props.index,
-            depth: this.props.element.getDepth(),
         }
         this.handleTextChange = this.handleTextChange.bind(this);
         this.toggleDialog = this.toggleDialog.bind(this);
     }
 
     handleAdd = () => {
-        this.props.onAdd(this.state.depth+1, {parent: this.props.element})
+        this.props.onAdd(this.props.element.getDepth()+1, {parent: this.props.element})
     }
-    handleTextChange(string) {
-        this.props.onChange(string, this.state.index, {parent: this.props.element.getParent()});
+    handleTextChange(e) {
+        this.props.onChange(e, this.state.index, {parent: this.props.element.getParent()});
     }
     handleDelete = () => {
         this.props.onDelete(this.state.index, {parent: this.props.element.getParent()});
     }
     handleSetType = (value) => {
         this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
+    }
+    handleSetAttributes = (e) => {
+        this.props.onSetAttributes(e, this.state.index, {parent: this.props.element.getParent()});
     }
     toggleDialog() {
         this.setState(prevState => ({
@@ -78,7 +80,12 @@ class InputElement extends React.Component {
                 <InputDeleteButton onClick={this.handleDelete}/>
                 <InputExtrasButton onClick={this.toggleDialog}/>
 
-                <MoreElementDialog type={this.props.element.getType()} open={this.state.dialogOpen} toggleDialog={this.toggleDialog}/>
+                <MoreElementDialog 
+                    type={this.props.element.getType()} 
+                    onSetAttributes={this.handleSetAttributes}
+                    text={this.props.element.getAttributes()}
+                    open={this.state.dialogOpen} 
+                    toggleDialog={this.toggleDialog}/>
             </ListItem>
         );
     }

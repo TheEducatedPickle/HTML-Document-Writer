@@ -36,6 +36,8 @@ export default class FormDialog extends React.Component {
               label="Attributes"
               type="text"
               fullWidth
+              value={this.props.text}
+              onChange={(e) => this.props.onSetAttributes(e)}
             />
           </DialogContent>
           <DialogActions>
