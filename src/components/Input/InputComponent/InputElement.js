@@ -46,26 +46,26 @@ class InputElement extends React.Component {
                     onChange={this.handleSetType}
                     label={'Block Type'}
                     options={[
-                    {
-                        label: 'Header',
-                        value: 'h1',
-                    },
-                    {
-                        label: 'Paragraph',
-                        value: 'p'
-                    },          
-                    {
-                        label: 'Div',
-                        value: 'div',
-                    },
-                    {
-                        label: 'Attribute',
-                        value: 'a',
-                    },  
-                    {
-                        label: 'Custom',
-                        value: 'custom',
-                    }            
+                    {label: 'Header', value: 'h1',},
+                    {label: 'Paragraph', value: 'p',},
+                    {label: 'Emphasis', value: 'em',},
+                    {label: 'Strong', value: 'strong',},  
+                    {label: 'Quotation', value: 'q',},      
+                    {label: 'Div', value: 'div',},  
+                    {label: 'Pre', value: 'pre',},
+                    {label: 'Table', value: 'table'},
+                    {label: 'Table Row', value: 'tr'},
+                    {label: 'Table Head', value: 'th'},
+                    {label: 'Table Data', value: 'td'},
+                    {label: 'Form', value: 'form'},
+                    {label: 'Input', value: 'input'},
+                    {label: 'Text Area', value: 'textarea'},
+                    {label: 'Select', value: 'select'},
+                    {label: 'Option', value: 'option'},
+                    {label: 'Button', value: 'button'},
+                    {label: 'Attribute', value: 'a',},
+                    {label: 'Script', value: 'script',},
+                    {label: <i>Insert Custom</i>, value: 'custom', attributes: []}            
                     ]}
                 />
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
