@@ -27,19 +27,15 @@ class InputElement extends React.Component {
     handleAdd = () => {
         this.props.onAdd(this.state.depth+1, {parent: this.props.element})
     }
-
     handleTextChange(string) {
         this.props.onChange(string, this.state.index, {parent: this.props.element.getParent()});
     }
-
     handleDelete = () => {
         this.props.onDelete(this.state.index, {parent: this.props.element.getParent()});
     }
-
     handleSetType = (value) => {
         this.props.onTypeSelect(value, this.state.index, {parent: this.props.element.getParent()});
     }
-
     toggleDialog() {
         this.setState(prevState => ({
             dialogOpen: !prevState.dialogOpen,
@@ -82,7 +78,7 @@ class InputElement extends React.Component {
                 <InputDeleteButton onClick={this.handleDelete}/>
                 <InputExtrasButton onClick={this.toggleDialog}/>
 
-                <MoreElementDialog type={this.props.element.getType()} open={this.state.dialogOpen}/>
+                <MoreElementDialog type={this.props.element.getType()} open={this.state.dialogOpen} toggleDialog={this.toggleDialog}/>
             </ListItem>
         );
     }

@@ -12,14 +12,6 @@ export default class FormDialog extends React.Component {
     open: false,
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
   componentWillReceiveProps(newProps) {
     this.setState({open: newProps.open});
   }
@@ -29,10 +21,10 @@ export default class FormDialog extends React.Component {
       <div>
         <Dialog
           open={this.state.open}
-          onClose={this.handleClose}
+          onClose={this.props.toggleDialog}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Attributes</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add Attributes</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Set attributes for your <b>{this.props.type}</b> tag here
@@ -41,16 +33,16 @@ export default class FormDialog extends React.Component {
               autoFocus
               margin="dense"
               id="name"
-              label="Email Address"
+              label="Attributes"
               type="text"
               fullWidth
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.props.toggleDialog} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.props.toggleDialog} color="primary">
               Confirm
             </Button>
           </DialogActions>
