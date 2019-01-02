@@ -53,7 +53,9 @@ class InputElement extends React.Component {
                     onChange={this.handleSetType}
                     label={'Block Type'}
                     options={[
-                    {label: 'Header', value: 'h1',},
+                    {label: 'Header (1)', value: 'h1',},
+                    {label: 'Header (2)', value: 'h2',},
+                    {label: 'Header (3)', value: 'h3',},
                     {label: 'Paragraph', value: 'p',},
                     {label: 'Emphasis', value: 'em',},
                     {label: 'Strong', value: 'strong',},  
@@ -72,7 +74,7 @@ class InputElement extends React.Component {
                     {label: 'Button', value: 'button'},
                     {label: 'Attribute', value: 'a',},
                     {label: 'Script', value: 'script',},
-                    {label: <i>Insert Custom</i>, value: 'custom', attributes: []}            
+                    {label: <i>Insert Custom</i>, value: 'custom'}            
                     ]}
                 />
                 <InputField text={this.props.element.getContent()} onChange={this.handleTextChange}/>
