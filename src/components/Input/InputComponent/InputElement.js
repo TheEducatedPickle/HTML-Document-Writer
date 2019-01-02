@@ -62,6 +62,9 @@ class InputElement extends React.Component {
                     {label: 'Quotation', value: 'q',},      
                     {label: 'Div', value: 'div',},  
                     {label: 'Pre', value: 'pre',},
+                    {label: 'Unordered List', value: 'ul'},
+                    {label: 'Ordered List', value: 'ol'},
+                    {label: 'List Element', value: 'li'},
                     {label: 'Table', value: 'table'},
                     {label: 'Table Row', value: 'tr'},
                     {label: 'Table Head', value: 'th'},
@@ -73,6 +76,7 @@ class InputElement extends React.Component {
                     {label: 'Option', value: 'option'},
                     {label: 'Button', value: 'button'},
                     {label: 'Attribute', value: 'a',},
+                    {label: 'Image', value: 'img'},
                     {label: 'Script', value: 'script',},
                     {label: <i>Insert Custom</i>, value: 'custom'}            
                     ]}

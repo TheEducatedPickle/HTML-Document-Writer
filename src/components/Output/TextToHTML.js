@@ -15,7 +15,7 @@ class TextToOutput extends React.Component {
     render() {
         const { classes } = this.props;
         let startTemplate = '<!doctype html>\n<html lang="en">\n<head>\n\t<meta charset="utf-8">\n\t<title>TextToHTML</title>\n\t<meta name="description" content="Description placeholder">\n\t<meta name="author" content="TextToHTML">\n\t<link rel="stylesheet" href="css/styles.css?v=1.0">\n</head>\n<body>'
-        let endTemplate = '\t<script src="js/scripts.js"></script>\n</body>\n</html>'
+        let endTemplate = '</body>\n</html>'
         return (
             <div>
                 {startTemplate}
