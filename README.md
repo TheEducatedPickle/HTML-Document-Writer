@@ -1,4 +1,4 @@
-![Screenshot](https://github.com/TheEducatedPickle/HTML-Generator-React/blob/master/screenshots/sample1.PNG?raw=true)
+<a href="url"><img src="https://github.com/TheEducatedPickle/HTML-Generator-React/blob/master/screenshots/sample1.PNG?raw=true" align="center" height="676" width="1440" ></a>
 
 # HTML Builder
 HTML Builder is a tool designed to introduce aspiring web developers to HTML by providing a user friendly method for building HTML documents.
