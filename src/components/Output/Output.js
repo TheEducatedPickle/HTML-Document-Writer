@@ -5,7 +5,7 @@ Output.js is the frame for displaying the output code
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import TextToHTML from './TextToHTML';
-import { Paper } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 /*
 import ContainedButton from './ContainedButton';
 import FormButton from './FormButton';
@@ -62,6 +62,7 @@ class Output extends React.Component {
                 <FormButton label='Download' />
                 */}
                 <Paper className={classes.output}>
+                <Typography>
                     <pre>
                         <h2 className={classes.header}>Output:</h2>
                         <hr className={classes.hr} />
@@ -69,6 +70,7 @@ class Output extends React.Component {
                             <TextToHTML elementArray={this.props.elementArray} />
                         </div>
                     </pre>
+                    </Typography>
                 </Paper>
             </div>
         );

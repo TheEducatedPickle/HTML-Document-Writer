@@ -18,7 +18,7 @@ function InputTreeToHTML(elementArray) {
 //HTML elements are rendered with new line in between opening and closing markers, and children are rendered recursively
 function renderWithChildren(element) {
     return formatTabbing('\n' + element.getOpeningTag()
-        + '\n\t' + formatInputString(element) + '\n'
+        + '\n' + (formatInputString(element) === '' ? '' : '\t' + formatInputString(element) + '\n')
         + InputTreeToHTML(element.getChildren()) 
         + '\n' + element.getClosingTag())
 }

@@ -36,11 +36,14 @@ export default class FormDialog extends React.Component {
           open={this.state.open}
           onClose={this.props.toggleDialog}
           aria-labelledby="form-dialog-title"
+          maxWidth= 'md'
+          fullWidth
         >
           <DialogTitle id="form-dialog-title">Add Attributes</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Set attributes for your <b>{this.props.type}</b> tag here
+              Set attributes for your <b>{this.props.type}</b> tag here <br />
+              <i style={{fontSize:13}}>Example: id="image1" src="images/kitten.jpg"</i>
             </DialogContentText>
             <TextField
               autoFocus

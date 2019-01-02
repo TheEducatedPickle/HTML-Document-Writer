@@ -1,11 +1,11 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import App from './App';
-import { indigo, blue } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: indigo,
+    primary: blue,
     secondary: blue,
   },
   typography: { useNextVariants: true },
