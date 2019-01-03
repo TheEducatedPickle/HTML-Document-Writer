@@ -17,18 +17,35 @@ function InputTreeToHTML(elementArray) {
 
 //HTML elements are rendered with new line in between opening and closing markers, and children are rendered recursively
 function renderWithChildren(element) {
+    let content;
+    if (element.getContent().includes('\n')) {
+        content = formatInputString(element) === '' ? '' : '\t' + formatInputString(element).split('\n').join('\n\t') + '\n'
+    } else {
+       content = formatInputString(element) === '' ? '' : '\t' + formatInputString(element) + '\n'
+    }
     return formatTabbing('\n' + element.getOpeningTag()
-        + '\n' + (formatInputString(element) === '' ? '' : '\t' + formatInputString(element) + '\n')
+        + '\n' + content
         + InputTreeToHTML(element.getChildren()) 
         + '\n' + element.getClosingTag())
 }
 
 //HTML elements are rendered in a single line
 function renderWithoutChildren(element) {
-    return formatTabbing('\n' + element.getOpeningTag()
-        + formatInputString(element) 
-        + InputTreeToHTML(element.getChildren()) 
+    //If the content of an element is multiline, use multiline formatting
+    let content;
+    if(element.getContent().includes('\n')) {
+        content = renderWithoutChildrenMultiline(element);
+    } else {
+        content = formatInputString(element);
+    }
+    return formatTabbing('\n' 
+        + element.getOpeningTag()
+        + content
         + element.getClosingTag())   
+}
+
+function renderWithoutChildrenMultiline(element) {
+    return '\n\t' + (formatInputString(element).split('\n').join('\n\t')) + '\n'
 }
 //Receives an input and applies the proper tabbing
 function formatInputString(element) {

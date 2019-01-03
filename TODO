@@ -1,4 +1,3 @@
 Restructure adding child functionality to display without forceUpdate
 Fix rendering so child will be enclosed in parent
 Pad input list so elements arent obscured by FAB
-Add button for complex features
