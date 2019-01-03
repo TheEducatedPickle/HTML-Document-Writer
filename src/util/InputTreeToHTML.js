@@ -6,8 +6,7 @@ function InputTreeToHTML(elementArray) {
     if (elementArray.length === 0) {
         return '';
     }
-    
-    let output = elementArray.map((text, index) => ( elementArray[index].getChildren().length === 0 ?
+    let output = elementArray.map((text, index) => (elementArray[index].getChildren().length === 0 ?
         renderWithoutChildren(elementArray[index]) : renderWithChildren(elementArray[index])
     ))
     output[0] = output[0].substr(1);    //Remove first newLine
@@ -21,11 +20,12 @@ function renderWithChildren(element) {
     if (element.getContent().includes('\n')) {
         content = formatInputString(element) === '' ? '' : '\t' + formatInputString(element).split('\n').join('\n\t') + '\n'
     } else {
-       content = formatInputString(element) === '' ? '' : '\t' + formatInputString(element) + '\n'
+        content = formatInputString(element) === '' ? '' : '\t' + formatInputString(element) + '\n'
     }
+    //console.log(InputTreeToHTML(element.getChildren()).toString().split(',\n').join('\n'));
     return formatTabbing('\n' + element.getOpeningTag()
         + '\n' + content
-        + InputTreeToHTML(element.getChildren()) 
+        + InputTreeToHTML(element.getChildren()).toString().split(',\n').join('\n')
         + '\n' + element.getClosingTag())
 }
 
@@ -33,15 +33,15 @@ function renderWithChildren(element) {
 function renderWithoutChildren(element) {
     //If the content of an element is multiline, use multiline formatting
     let content;
-    if(element.getContent().includes('\n')) {
+    if (element.getContent().includes('\n')) {
         content = renderWithoutChildrenMultiline(element);
     } else {
         content = formatInputString(element);
     }
-    return formatTabbing('\n' 
+    return formatTabbing('\n'
         + element.getOpeningTag()
         + content
-        + element.getClosingTag())   
+        + element.getClosingTag())
 }
 
 function renderWithoutChildrenMultiline(element) {
@@ -55,7 +55,7 @@ function formatInputString(element) {
     }
     return element.getContent();
 }
-function formatTabbing(string, amount=1) {
+function formatTabbing(string, amount = 1) {
     let addTab = '\t'.repeat(amount);
     return string.split('\n').join('\n' + addTab);
 }
