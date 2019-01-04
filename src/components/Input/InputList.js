@@ -73,7 +73,7 @@ class InputList extends React.Component {
                 return (
                     <div>
                         <InputElement
-                            key={index}
+                            key={index + ' ' + currentElements[index].getDepth()}
                             index={index}
                             element={currentElements[index]}
                             onAdd={this.handleAddElement}
