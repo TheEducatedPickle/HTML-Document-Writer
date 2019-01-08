@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import InputElement from './InputComponent/InputElement'
 import FloatingAddButton from '../experimental/FloatingAddButton';
+var uniqid = require('uniqid');
 
 const styles = theme => ({
     list: {
@@ -71,7 +72,7 @@ class InputList extends React.Component {
         return (
             currentElements.map((text, index) => {
                 return (
-                    <div>
+                    <div key={uniqid()}>
                         <InputElement
                             key={index + ' ' + currentElements[index].getDepth()}
                             index={index}
